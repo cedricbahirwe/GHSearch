@@ -32,6 +32,7 @@
 		8204C2DC2750D51700EB9BFB /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DB2750D51700EB9BFB /* UserProfileView.swift */; };
 		8204C2DE2750D78C00EB9BFB /* GHAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */; };
 		8204C2E02750EB8A00EB9BFB /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */; };
+		8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2E12751105000EB9BFB /* AlertItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		8204C2DB2750D51700EB9BFB /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHAvatarImageView.swift; sourceTree = "<group>"; };
 		8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		8204C2E12751105000EB9BFB /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			children = (
 				8204C2BE2750129400EB9BFB /* User.swift */,
 				8204C2C02750129E00EB9BFB /* Follower.swift */,
+				8204C2E12751105000EB9BFB /* AlertItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				8204C27D27500B9E00EB9BFB /* AppDelegate.swift in Sources */,
 				8204C27F27500B9E00EB9BFB /* SceneDelegate.swift in Sources */,
 				8204C2B9275010F000EB9BFB /* PersistenceManager.swift in Sources */,
+				8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */,
 				8204C2D22750C51600EB9BFB /* SearchViewController.swift in Sources */,
 				8204C2CA2750BAB300EB9BFB /* MainTabViewController.swift in Sources */,
 				8204C2E02750EB8A00EB9BFB /* Date+Extension.swift in Sources */,

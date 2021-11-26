@@ -11,6 +11,9 @@ struct UserProfileView: View {
     var user: User
     var onRequestFollowers: (User) -> Void
     var onRequestFollowing: (User) -> Void
+    
+    @State private var alertItem: GHAlertItem?
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -45,7 +48,7 @@ struct UserProfileView: View {
                             .minimumScaleFactor(0.9)
                             .foregroundColor(.secondary)
                         Spacer()
-                        Text("Github Member since \(user.createdAt.convertingToMonthYear())")
+                        Text("Member since \(user.createdAt.convertingToMonthYear())")
                             .font(.system(size: 16, weight: .medium))
                             .minimumScaleFactor(0.9)
                             .foregroundColor(.secondary)
@@ -54,7 +57,7 @@ struct UserProfileView: View {
                     
                     Spacer()
                 }
-                .frame(height: 90)
+                .frame(height: 90, alignment: .top)
                 
                 VStack(alignment: .leading) {
                     Label(user.location ?? "No Location Provided", systemImage: "mappin.and.ellipse")
@@ -66,7 +69,7 @@ struct UserProfileView: View {
                         .padding(.vertical, 10)
                 }
                 .foregroundColor(.secondary)
-
+                
                 
                 HStack {
                     Label("\(user.publicRepos) Public Repos", systemImage:  "folder.fill")
@@ -83,9 +86,11 @@ struct UserProfileView: View {
                         .padding(10)
                         .background(.thinMaterial)
                         .cornerRadius(8)
-                        
+                    
                 }
                 .foregroundColor(.accentColor)
+                .minimumScaleFactor(0.9)
+                .lineLimit(1)
                 
                 followersSection
                     .padding(.bottom)
@@ -106,12 +111,19 @@ struct UserProfileView: View {
                     
                 }
             }
-            .padding()
+            .padding(.horizontal)
         }
+        .alert(item: $alertItem) { alertItem in
+            Alert(title: Text(alertItem.title),
+                  message: alertItem.message == nil ? nil : Text(alertItem.message!),
+                  dismissButton: .destructive(Text("Got it!")))
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle("Title")
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Done") {
-                    
+                    bookmarkUser()
                 }
                 .font(.body.bold())
             }
@@ -132,12 +144,20 @@ struct UserProfileView: View {
     }
 }
 
+extension UserProfileView {
+    private func bookmarkUser() {
+        guard let error = PersistenceManager.save(user: user) else { return }
+        alertItem = GHAlertItem(message: error.rawValue)
+        
+    }
+}
+
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
         UserProfileView(user: .example,
                         onRequestFollowers: { _ in },
                         onRequestFollowing: { _ in })
-//                    .preferredColorScheme(.dark)
+        //                    .preferredColorScheme(.dark)
     }
 }
 

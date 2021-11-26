@@ -13,6 +13,6 @@ enum GHSearchError: String, Error {
     case invalidData = "The data received from the server was invalid. Please try again."
     case unableToComplete = "Unable to complete your request. Please check your internet connection."
     case unableToSave = "There was an error saving this user. Please try again."
-    case alreadyInSaved = "You've already saved this user!"
+    case alreadyInBookmarks = "You've already saved this user!"
     case notFound = "unable to find the resource you're requesting."
 }
