@@ -22,6 +22,16 @@
 		8204C2BD2750113800EB9BFB /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BC2750113800EB9BFB /* NetworkingManager.swift */; };
 		8204C2BF2750129400EB9BFB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BE2750129400EB9BFB /* User.swift */; };
 		8204C2C12750129E00EB9BFB /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2C02750129E00EB9BFB /* Follower.swift */; };
+		8204C2C427501EFF00EB9BFB /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8204C2C327501EFF00EB9BFB /* RxCocoa */; };
+		8204C2C627501EFF00EB9BFB /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8204C2C527501EFF00EB9BFB /* RxSwift */; };
+		8204C2CA2750BAB300EB9BFB /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2C92750BAB300EB9BFB /* MainTabViewController.swift */; };
+		8204C2D22750C51600EB9BFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2D12750C51600EB9BFB /* SearchViewController.swift */; };
+		8204C2D42750C65D00EB9BFB /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2D32750C65D00EB9BFB /* UserProfileViewController.swift */; };
+		8204C2D62750C6CF00EB9BFB /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2D52750C6CF00EB9BFB /* UIViewController+Extension.swift */; };
+		8204C2DA2750D2F800EB9BFB /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2D92750D2F800EB9BFB /* UITextField+Extension.swift */; };
+		8204C2DC2750D51700EB9BFB /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DB2750D51700EB9BFB /* UserProfileView.swift */; };
+		8204C2DE2750D78C00EB9BFB /* GHAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */; };
+		8204C2E02750EB8A00EB9BFB /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +71,14 @@
 		8204C2BC2750113800EB9BFB /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		8204C2BE2750129400EB9BFB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8204C2C02750129E00EB9BFB /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
+		8204C2C92750BAB300EB9BFB /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		8204C2D12750C51600EB9BFB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8204C2D32750C65D00EB9BFB /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		8204C2D52750C6CF00EB9BFB /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		8204C2D92750D2F800EB9BFB /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		8204C2DB2750D51700EB9BFB /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHAvatarImageView.swift; sourceTree = "<group>"; };
+		8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8204C2C627501EFF00EB9BFB /* RxSwift in Frameworks */,
+				8204C2C427501EFF00EB9BFB /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +168,10 @@
 		8204C2AC27500BAC00EB9BFB /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8204C2C92750BAB300EB9BFB /* MainTabViewController.swift */,
+				8204C2D32750C65D00EB9BFB /* UserProfileViewController.swift */,
+				8204C2D12750C51600EB9BFB /* SearchViewController.swift */,
+				8204C2DB2750D51700EB9BFB /* UserProfileView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -164,6 +188,9 @@
 		8204C2AE27500D4300EB9BFB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8204C2D52750C6CF00EB9BFB /* UIViewController+Extension.swift */,
+				8204C2D92750D2F800EB9BFB /* UITextField+Extension.swift */,
+				8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -180,6 +207,7 @@
 		8204C2B027500D6400EB9BFB /* Custom Reusable Views */ = {
 			isa = PBXGroup;
 			children = (
+				8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */,
 			);
 			path = "Custom Reusable Views";
 			sourceTree = "<group>";
@@ -209,6 +237,10 @@
 			dependencies = (
 			);
 			name = GHSearch;
+			packageProductDependencies = (
+				8204C2C327501EFF00EB9BFB /* RxCocoa */,
+				8204C2C527501EFF00EB9BFB /* RxSwift */,
+			);
 			productName = GHSearch;
 			productReference = 8204C27927500B9E00EB9BFB /* GHSearch.app */;
 			productType = "com.apple.product-type.application";
@@ -281,6 +313,9 @@
 				Base,
 			);
 			mainGroup = 8204C27027500B9E00EB9BFB;
+			packageReferences = (
+				8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 8204C27A27500B9E00EB9BFB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -324,14 +359,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8204C2DA2750D2F800EB9BFB /* UITextField+Extension.swift in Sources */,
 				8204C28127500B9E00EB9BFB /* ViewController.swift in Sources */,
+				8204C2D62750C6CF00EB9BFB /* UIViewController+Extension.swift in Sources */,
 				8204C2C12750129E00EB9BFB /* Follower.swift in Sources */,
 				8204C27D27500B9E00EB9BFB /* AppDelegate.swift in Sources */,
 				8204C27F27500B9E00EB9BFB /* SceneDelegate.swift in Sources */,
 				8204C2B9275010F000EB9BFB /* PersistenceManager.swift in Sources */,
+				8204C2D22750C51600EB9BFB /* SearchViewController.swift in Sources */,
+				8204C2CA2750BAB300EB9BFB /* MainTabViewController.swift in Sources */,
+				8204C2E02750EB8A00EB9BFB /* Date+Extension.swift in Sources */,
+				8204C2D42750C65D00EB9BFB /* UserProfileViewController.swift in Sources */,
+				8204C2DC2750D51700EB9BFB /* UserProfileView.swift in Sources */,
 				8204C2BF2750129400EB9BFB /* User.swift in Sources */,
 				8204C2BB2750111000EB9BFB /* GHSearchError.swift in Sources */,
 				8204C2B327500FF100EB9BFB /* Constants.swift in Sources */,
+				8204C2DE2750D78C00EB9BFB /* GHAvatarImageView.swift in Sources */,
 				8204C2BD2750113800EB9BFB /* NetworkingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -696,6 +739,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8204C2C327501EFF00EB9BFB /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		8204C2C527501EFF00EB9BFB /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8204C27127500B9E00EB9BFB /* Project object */;
 }

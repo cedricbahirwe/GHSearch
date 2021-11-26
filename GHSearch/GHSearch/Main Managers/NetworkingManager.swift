@@ -11,11 +11,13 @@ import UIKit
 final class NetworkingManager {
     
     static let shared = NetworkingManager()
+    public let cache = NSCache<NSString, UIImage>()
+
     private let baseUrl = "https://api.github.com/users/"
-    private let cache = NSCache<NSString, UIImage>()
     private let decoder = JSONDecoder()
     
     private init() {
+        decoder.dateDecodingStrategy = .iso8601
         decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
@@ -45,7 +47,9 @@ final class NetworkingManager {
         guard let url = URL(string: endpoint) else { throw GHSearchError.invalidUsername }
         let (data, response) = try await URLSession.shared.data(from: url)
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw GHSearchError.invalidResponse }
-        
+        if let json =  try? JSONSerialization.jsonObject(with: data, options: []) {
+            print("JSon", json)
+        }
         do {
             return try decoder.decode(User.self, from: data)
         } catch {
