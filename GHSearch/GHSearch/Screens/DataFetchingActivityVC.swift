@@ -36,8 +36,9 @@ class DataFetchingActivityVC: UIViewController {
     
     func stopLoadingActivityView() {
         DispatchQueue.main.async {
-            self.contentView.removeFromSuperview()
-            self.contentView = nil
+            if self.contentView != nil {
+                self.contentView.removeFromSuperview()
+            }
         }
     }
     

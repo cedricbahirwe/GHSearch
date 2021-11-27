@@ -7,16 +7,51 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 
 class GHUserViewModel {
-    var username: String = ""
-    var user: User!
+//    var username: String = ""
+
+    var selectedUser = BehaviorSubject<User?>(value: nil)
     
-    let showError = PublishSubject<Any>()
+    let onShowError = PublishSubject<GHSearchError>()
+    let apiClient: NetworkingManager
+    
+    var onShowLoadingView: Observable<Bool> {
+        return loadInProgress
+            .asObservable()
+            .distinctUntilChanged()
+    }
+    
+    private let loadInProgress = BehaviorRelay(value: false)
+
+    
+    init(apiClient: NetworkingManager = NetworkingManager.shared) {
+        self.apiClient = apiClient
+    }
     
     let disposeBag = DisposeBag()
     
-    private let loadInProgress = false
+    func getUserInfo(for username: String) {
+        loadInProgress.accept(true)
+
+        apiClient
+            .getUserInfo(for: username)
+            .subscribe(
+                onNext: { [weak self] userInfo in
+                    print("Got response")
+                    self?.loadInProgress.accept(false)
+                    
+                    self?.selectedUser.onNext(userInfo)
+                },
+                onError: { [weak self] error in
+                    self?.loadInProgress.accept(false)
+                    print("Never response")
+                    self?.onShowError.onNext((error as? GHSearchError ?? GHSearchError.invalidResponse))
+                }
+            )
+            .disposed(by: disposeBag)
+    }
     
 }

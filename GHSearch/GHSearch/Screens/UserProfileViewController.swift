@@ -20,6 +20,8 @@ class UserProfileViewController: DataFetchingActivityVC {
     
     private let disposeBag = DisposeBag()
     
+    private var selectUser = ReadOnce<User>(nil)
+    
     enum FollowActivityType {
         case follower, following
         var title: String {
@@ -64,7 +66,9 @@ class UserProfileViewController: DataFetchingActivityVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-        getUserInfo(username: username)
+        bindViewModel()
+        userViewModel.getUserInfo(for: username)
+//        getUserInfo(username: username)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -170,6 +174,35 @@ class UserProfileViewController: DataFetchingActivityVC {
                 stopLoadingActivityView()
             }
         }
+    }
+    
+    func bindViewModel() {
+        userViewModel.selectedUser
+            .compactMap { $0 }
+            .map({ [weak self] in
+                self?.configureUserProfileView(user: $0)
+            })
+            .subscribe()
+            .disposed(by: disposeBag)
+
+        userViewModel
+            .onShowError
+            .map { [weak self] in self?.presentAlert(title: "Oops!", message: $0.rawValue, buttonTitle: "OK") }
+            .subscribe()
+            .disposed(by: disposeBag)
+
+        userViewModel
+            .onShowLoadingView
+            .map { [weak self] isVisible in
+                print("Pbulished", isVisible)
+                if isVisible {
+                    self?.startLoadingActivityView()
+                } else {
+                    self?.stopLoadingActivityView()
+                }
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
     }
     
 //    func configureCollectionView() {

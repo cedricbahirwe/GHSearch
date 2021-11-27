@@ -41,6 +41,8 @@
 		821C5C7127528D96003643C5 /* GHUserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */; };
 		821C5C722752972E003643C5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BC2750113800EB9BFB /* NetworkingManager.swift */; };
 		821C5C732752976D003643C5 /* GHSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BA2750111000EB9BFB /* GHSearchError.swift */; };
+		821C5C762752A287003643C5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 821C5C752752A287003643C5 /* Alamofire */; };
+		821C5C782752A7AA003643C5 /* ReadOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C772752A7AA003643C5 /* ReadOnce.swift */; };
 		823F4F26275241FA0038EA89 /* FollowActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */; };
 		823F4F282752448D0038EA89 /* SampleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F272752448D0038EA89 /* SampleListView.swift */; };
 		823F4F2A275251CA0038EA89 /* DataFetchingActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */; };
@@ -101,6 +103,7 @@
 		821C5C652752845A003643C5 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		821C5C6B27528ADD003643C5 /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
 		821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUserViewModelTests.swift; sourceTree = "<group>"; };
+		821C5C772752A7AA003643C5 /* ReadOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnce.swift; sourceTree = "<group>"; };
 		823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowActivityTableViewController.swift; sourceTree = "<group>"; };
 		823F4F272752448D0038EA89 /* SampleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListView.swift; sourceTree = "<group>"; };
 		823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchingActivityVC.swift; sourceTree = "<group>"; };
@@ -116,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821C5C762752A287003643C5 /* Alamofire in Frameworks */,
 				8204C2C627501EFF00EB9BFB /* RxSwift in Frameworks */,
 				8204C2C427501EFF00EB9BFB /* RxCocoa in Frameworks */,
 			);
@@ -258,6 +262,7 @@
 			children = (
 				8204C2B227500FF100EB9BFB /* Constants.swift */,
 				8204C2BA2750111000EB9BFB /* GHSearchError.swift */,
+				821C5C772752A7AA003643C5 /* ReadOnce.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 			packageProductDependencies = (
 				8204C2C327501EFF00EB9BFB /* RxCocoa */,
 				8204C2C527501EFF00EB9BFB /* RxSwift */,
+				821C5C752752A287003643C5 /* Alamofire */,
 			);
 			productName = GHSearch;
 			productReference = 8204C27927500B9E00EB9BFB /* GHSearch.app */;
@@ -398,6 +404,7 @@
 			mainGroup = 8204C27027500B9E00EB9BFB;
 			packageReferences = (
 				8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */,
+				821C5C742752A286003643C5 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 8204C27A27500B9E00EB9BFB /* Products */;
 			projectDirPath = "";
@@ -452,6 +459,7 @@
 				8204C2B9275010F000EB9BFB /* PersistenceManager.swift in Sources */,
 				821C5C6127528323003643C5 /* GHUserViewModel.swift in Sources */,
 				823F4F282752448D0038EA89 /* SampleListView.swift in Sources */,
+				821C5C782752A7AA003643C5 /* ReadOnce.swift in Sources */,
 				8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */,
 				823F4F2E2752697D0038EA89 /* UIView+Extension.swift in Sources */,
 				8204C2D22750C51600EB9BFB /* SearchViewController.swift in Sources */,
@@ -849,6 +857,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		821C5C742752A286003643C5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -861,6 +877,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		821C5C752752A287003643C5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 821C5C742752A286003643C5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

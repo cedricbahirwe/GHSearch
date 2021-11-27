@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import Alamofire
 
 // A singleton class for networking
 class NetworkingManager {
@@ -77,6 +78,32 @@ class NetworkingManager {
             throw GHSearchError.invalidData
         }
     }
+    
+    func getUserInfo(for username: String) -> Observable<User> {
+        return Observable.create { observer -> Disposable in
+            AF.request(self.baseUrl + "\(username)")
+                .validate()
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        guard let data = response.data else {
+                            observer.onError(response.error ?? GHSearchError.notFound)
+                            return
+                        }
+                        do {
+                            let friend = try self.decoder.decode(User.self, from: data)
+                            observer.onNext(friend)
+                        } catch {
+                            observer.onError(error)
+                        }
+                    case .failure(let error):
+                        observer.onError(error)
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
     
     func downloadedImage(from urlString: String) async -> UIImage? {
         let cacheKey = NSString(string: urlString)
