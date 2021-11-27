@@ -6,22 +6,35 @@
 //
 
 import SwiftUI
+import RxCocoa
 
 struct SampleListView: View {
+    @Environment(\.dismiss)
+    private var dismiss
+    
     let title: String
     var followers: [Follower]
-    var onShowProfile: (Follower) -> Void
-    
+    var delegate: UserInfoVCDelegate!
+//    var onShowProfile: (Follower) -> Void
     var body: some View {
         NavigationView {
             List {
-                FollowRowView(follower: Follower(login: "cedricbahirwe", avatarUrl: "", htmlUrl: "https://github.com/cedricbahirwe")) { _ in }
                 
                 ForEach(followers) { follower in
-                    FollowRowView(follower: follower, showProfile: onShowProfile)
+                    FollowRowView(follower: follower) { follower in
+                        delegate.didRequestShowProfile(for: follower.login)
+                    }
                 }
             }
             .navigationBarTitle(title)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                    .font(.body.bold())
+                }
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
        
@@ -30,7 +43,7 @@ struct SampleListView: View {
 
 struct SampleListView_Previews: PreviewProvider {
     static var previews: some View {
-        SampleListView(title: "Follows", followers: []) { _ in }
+        SampleListView(title: "Follows", followers: []) //{ _ in }
     }
 }
 

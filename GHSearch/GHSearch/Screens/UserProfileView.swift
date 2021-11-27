@@ -113,7 +113,7 @@ struct UserProfileView: View {
     }
     
     var followersSection: some View {
-        InfoSectionView("\(user.followers) Followers",
+        UserInfoSectionView("\(user.followers) Followers",
                         btnTitle: "Get Followers",
                         btnIcon: "suit.heart", action: {
             onRequestFollowers(user)
@@ -121,7 +121,7 @@ struct UserProfileView: View {
     }
     
     var followingsSectiton: some View {
-        InfoSectionView("\(user.following) Following", btnTitle: "Get Following",
+        UserInfoSectionView("\(user.following) Following", btnTitle: "Get Following",
                         btnIcon: "person.2", tint: .green, action: {
             onRequestFollowing(user)
         })
@@ -142,75 +142,5 @@ struct UserProfileView_Previews: PreviewProvider {
                         onRequestFollowers: { _ in },
                         onRequestFollowing: { _ in })
         //                    .preferredColorScheme(.dark)
-    }
-}
-
-
-struct InfoSectionView: View {
-    init(_ title: String, btnTitle: String, btnIcon: String, tint: Color = .accentColor, action: @escaping () -> Void) {
-        self.title = title
-        self.btnTitle = btnTitle
-        self.btnIcon = btnIcon
-        self.tint = tint
-        self.action = action
-    }
-    
-    private let title: String
-    private let btnTitle: String
-    private let btnIcon: String
-    private var tint: Color
-    private var action: () -> Void
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(title).font(.title.bold())
-            
-            Button(action: action) {
-                Label(btnTitle, systemImage: btnIcon)
-                    .foregroundColor(tint)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 45)
-                    .background(tint.opacity(0.2))
-                    .cornerRadius(10)
-            }
-            
-            
-        }
-        .padding()
-        .background(.regularMaterial)
-        .cornerRadius(15)
-    }
-}
-
-struct GHAvatarView: View {
-    let url: String
-    var size: CGSize = CGSize(width: 90, height: 90)
-    var cornerRadius: CGFloat = 10
-    var body: some View {
-        AsyncImage(url: URL(string: url)) { phase in
-            switch phase {
-            case .empty, .failure:
-                Image(uiImage: GHImages.imagePlaceholder!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: size.width, height: size.height)
-            case .success(let image):
-                image.resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: size.width, height: size.height)
-            @unknown default:
-                EmptyView()
-            }
-        }
-        
-        .cornerRadius(cornerRadius)
-    }
-}
-
-struct LocationLabel: View {
-    let description: String
-    init(_ description: String) { self.description = description }
-    var body: some View {
-        Label(description, systemImage: "mappin.and.ellipse")
     }
 }

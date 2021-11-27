@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a Github username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cG5-zN-8nn">
-                                <rect key="frame" x="40" y="410" width="334" height="50"/>
+                                <rect key="frame" x="40" y="440" width="334" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="lFe-fl-7Na"/>
                                 </constraints>
@@ -26,7 +26,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gitavatar" translatesAutoresizingMaskIntoConstraints="NO" id="72O-NF-1zZ">
-                                <rect key="frame" x="107" y="170" width="200" height="200"/>
+                                <rect key="frame" x="107" y="200" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Eqy-yX-Q9k"/>
                                     <constraint firstAttribute="height" constant="200" id="rwI-fB-siK"/>
@@ -52,7 +52,7 @@
                         <constraints>
                             <constraint firstItem="cG5-zN-8nn" firstAttribute="top" secondItem="72O-NF-1zZ" secondAttribute="bottom" constant="40" id="9L7-l1-NHq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Mhq-jj-j1I" secondAttribute="trailing" constant="40" id="9f5-Hr-f9z"/>
-                            <constraint firstItem="72O-NF-1zZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="H8T-ZO-E2m"/>
+                            <constraint firstItem="72O-NF-1zZ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="H8T-ZO-E2m"/>
                             <constraint firstItem="72O-NF-1zZ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OuF-pT-ama"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cG5-zN-8nn" secondAttribute="trailing" constant="40" id="Pox-N9-H9F"/>
                             <constraint firstItem="cG5-zN-8nn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="QDk-2i-OYd"/>

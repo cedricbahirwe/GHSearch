@@ -10,9 +10,12 @@ import SwiftUI
 
 protocol UserInfoVCDelegate: AnyObject {
     func didRequestFollowers(for username: String)
+    
+    func didRequestShowProfile(for username: String)
 }
 
 class UserProfileViewController: DataFetchingActivityVC {
+    
     enum FollowActivityType {
         case follower, following
         var title: String {
@@ -88,11 +91,15 @@ class UserProfileViewController: DataFetchingActivityVC {
     }
     
     func getFollowers(for user: User) {
+        guard user.following > 0 else {
+            presentAlert(title: "Ooops, No Followers!!!", message: "This user has no followers🤷🏽‍♂️.", buttonTitle: "Alright😟")
+            return
+        }
         Task {
             do {
                 let followers = try await NetworkingManager.shared.getFollowers(for: user.login, page: 1)
                 print("Followers: ", followers)
-                presentFollowSheet(type: .follower, followItems: followers)
+                presentFollowSheet(for: .follower, followItems: followers)
             } catch {
                 print("There is a error: ", error.localizedDescription)
                 if let ghError = error as? GHSearchError {
@@ -105,11 +112,16 @@ class UserProfileViewController: DataFetchingActivityVC {
     }
     
     func getFollowings(for user: User) {
+        guard user.following > 0 else {
+            presentAlert(title: "Ooops, No Followings!!!", message: "This user has no followings🤷🏽‍♂️.", buttonTitle: "Alright😟")
+            return
+        }
+        
         Task {
             do {
                 let followings = try await NetworkingManager.shared.getFollowing(for: user.login, page: 1)
                 print("Followings: ", followings)
-                presentFollowSheet(type: .following, followItems: followings)
+                presentFollowSheet(for: .following, followItems: followings)
             } catch {
                 print("There is a error: ", error.localizedDescription)
                 if let ghError = error as? GHSearchError {
@@ -120,15 +132,15 @@ class UserProfileViewController: DataFetchingActivityVC {
         
     }
     
-    func presentFollowSheet(type: FollowActivityType, followItems: [Follower]) {
+    func presentFollowSheet(for followType: FollowActivityType, followItems: [Follower]) {
         
-        let listView = SampleListView(title: type.title, followers: followItems) { [self] follower in
-            dismiss(animated: true)
-            getUserInfo(username: follower.login)
+        guard !followItems.isEmpty else {
+            presentAlert(title: "Ooops, No \(followType.title)!!!", message: "This user has no \(followType.title)🤷🏽‍♂️.", buttonTitle: "Alright😟")
+            return
         }
-        
+        let listView =  SampleListView(title: followType.title, followers: followItems, delegate: self)
         let listVC = UIHostingController(rootView: listView)
-        
+
         present(listVC, animated: true)
         
     }
@@ -316,7 +328,16 @@ extension UserProfileViewController: UICollectionViewDelegate {
 //    }
 //}
 
-//extension UserProfileViewController: UserInfoVCDelegate {
+extension UserProfileViewController: UserInfoVCDelegate {
+    func didRequestShowProfile(for username: String) {
+        dismiss(animated: true)
+        getUserInfo(username: username)
+    }
+    
+    func didRequestFollowers(for username: String) {
+        
+    }
+    
 //
 //    func didRequestFollowers(for username: String) {
 //        self.username = username
@@ -328,4 +349,4 @@ extension UserProfileViewController: UICollectionViewDelegate {
 //        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
 //        getFollowers(username: username, page: page)
 //    }
-//}
+}
