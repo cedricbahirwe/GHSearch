@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import RxSwift
 
 protocol UserInfoVCDelegate: AnyObject {
     func didRequestFollowers(for username: String, page: Int)
@@ -15,6 +16,9 @@ protocol UserInfoVCDelegate: AnyObject {
 }
 
 class UserProfileViewController: DataFetchingActivityVC {
+    var userViewModel: GHUserViewModel! // = GHUserViewModel()
+    
+    private let disposeBag = DisposeBag()
     
     enum FollowActivityType {
         case follower, following
@@ -35,6 +39,7 @@ class UserProfileViewController: DataFetchingActivityVC {
     var username: String!
     var user: User!
     
+    
 //    var page = 1
 //    var hasMoreFollowers = true
 //    var isSearching = false
@@ -45,9 +50,10 @@ class UserProfileViewController: DataFetchingActivityVC {
 
 //    var userProfileView: UserProfileView!
     
-    init(username: String) {
+    init(username: String, userViewModel: GHUserViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.username = username
+        self.userViewModel = userViewModel
         title = username
     }
     
@@ -132,7 +138,7 @@ class UserProfileViewController: DataFetchingActivityVC {
     func presentFollowSheet(for followType: FollowActivityType, followItems: [Follower]) {
         
         guard !followItems.isEmpty else {
-            presentAlert(title: "Ooops, No \(followType.title)!!!", message: "This user has no \(followType.title)🤷🏽‍♂️.", buttonTitle: "Alright😟")
+            presentAlert(title: "Oops, No \(followType.title)!!!", message: "This user has no \(followType.title)🤷🏽‍♂️.", buttonTitle: "Alright😟")
             return
         }
         let listView =  SampleListView(username: user.login, title: followType.title, followers: followItems, delegate: self)

@@ -39,6 +39,8 @@
 		821C5C682752858B003643C5 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2C02750129E00EB9BFB /* Follower.swift */; };
 		821C5C6C27528ADD003643C5 /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C6B27528ADD003643C5 /* MockUser.swift */; };
 		821C5C7127528D96003643C5 /* GHUserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */; };
+		821C5C722752972E003643C5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BC2750113800EB9BFB /* NetworkingManager.swift */; };
+		821C5C732752976D003643C5 /* GHSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BA2750111000EB9BFB /* GHSearchError.swift */; };
 		823F4F26275241FA0038EA89 /* FollowActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */; };
 		823F4F282752448D0038EA89 /* SampleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F272752448D0038EA89 /* SampleListView.swift */; };
 		823F4F2A275251CA0038EA89 /* DataFetchingActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */; };
@@ -479,7 +481,9 @@
 				821C5C7127528D96003643C5 /* GHUserViewModelTests.swift in Sources */,
 				8204C29427500BA200EB9BFB /* GHSearchTests.swift in Sources */,
 				821C5C6727528587003643C5 /* User.swift in Sources */,
+				821C5C732752976D003643C5 /* GHSearchError.swift in Sources */,
 				821C5C682752858B003643C5 /* Follower.swift in Sources */,
+				821C5C722752972E003643C5 /* NetworkingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

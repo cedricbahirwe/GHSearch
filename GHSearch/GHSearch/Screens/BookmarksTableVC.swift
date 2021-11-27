@@ -10,7 +10,7 @@ import UIKit
 
 
 class BookmarksTableVC: UITableViewController {
-    
+    var userViewModel: GHUserViewModel!
     var users: [User] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ class BookmarksTableVC: UITableViewController {
     
     func updateUILayout(with users: [User]) {
         if users.isEmpty {
-            presentAlert(title: "Ooops!", message: "You have not bookmarked any user yet!", buttonTitle: "Got it!")
+            presentAlert(title: "Oops!", message: "You have not bookmarked any user yet!", buttonTitle: "Got it!")
         } else {
             self.users = users
             DispatchQueue.main.async {
@@ -82,7 +82,7 @@ class BookmarksTableVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
-        let userProfileVC = UserProfileViewController(username: user.login)
+        let userProfileVC = UserProfileViewController(username: user.login, userViewModel: userViewModel)
         navigationController?.pushViewController(userProfileVC, animated: true)
     }
     

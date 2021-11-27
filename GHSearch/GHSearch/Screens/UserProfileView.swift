@@ -27,7 +27,7 @@ struct UserProfileView: View {
                             .minimumScaleFactor(0.85)
                         Spacer()
                         Text(user.name ?? "")
-                            .font(.system(size: 16, weight: .medium))
+                            .font(.system(size: 18, weight: .medium))
                             .minimumScaleFactor(0.9)
                             .foregroundColor(.secondary)
                         Spacer()

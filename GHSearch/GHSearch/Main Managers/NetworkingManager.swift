@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import RxSwift
 
 // A singleton class for networking
-final class NetworkingManager {
+class NetworkingManager {
     
     static let shared = NetworkingManager()
     public let cache = NSCache<NSString, UIImage>()
@@ -76,7 +77,6 @@ final class NetworkingManager {
             throw GHSearchError.invalidData
         }
     }
-    
     
     func downloadedImage(from urlString: String) async -> UIImage? {
         let cacheKey = NSString(string: urlString)

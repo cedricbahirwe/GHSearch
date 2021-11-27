@@ -9,6 +9,7 @@ import UIKit
 import SwiftUI
 
 class SearchViewController: UIViewController {
+    var userViewModel: GHUserViewModel!
     @IBOutlet weak var usernameTextField: UITextField!
     
     var isUsernameEntered: Bool { !usernameTextField.text!.isEmpty }
@@ -43,7 +44,7 @@ class SearchViewController: UIViewController {
         
         usernameTextField.resignFirstResponder()
         
-        let userProfileVC = UserProfileViewController(username: usernameTextField.text!)
+        let userProfileVC = UserProfileViewController(username: usernameTextField.text!, userViewModel: userViewModel)
         navigationController?.pushViewController(userProfileVC, animated: true)
     }
     

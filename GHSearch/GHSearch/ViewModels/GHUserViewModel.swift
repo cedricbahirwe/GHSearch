@@ -10,9 +10,8 @@ import RxSwift
 
 
 class GHUserViewModel {
-    
+    var username: String = ""
     var user: User!
-    
     
     let showError = PublishSubject<Any>()
     

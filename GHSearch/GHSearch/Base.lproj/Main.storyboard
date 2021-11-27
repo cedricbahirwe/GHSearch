@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mak-Eu-DY1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
@@ -12,13 +12,13 @@
         <!--Search-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="GHSearch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="SearchViewController" customModule="GHSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter a Github username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cG5-zN-8nn">
-                                <rect key="frame" x="40" y="440" width="334" height="50"/>
+                                <rect key="frame" x="40" y="344" width="334" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="lFe-fl-7Na"/>
                                 </constraints>
@@ -26,14 +26,14 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gitavatar" translatesAutoresizingMaskIntoConstraints="NO" id="72O-NF-1zZ">
-                                <rect key="frame" x="107" y="200" width="200" height="200"/>
+                                <rect key="frame" x="107" y="104" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="Eqy-yX-Q9k"/>
                                     <constraint firstAttribute="height" constant="200" id="rwI-fB-siK"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhq-jj-j1I">
-                                <rect key="frame" x="40" y="723" width="334" height="50"/>
+                                <rect key="frame" x="40" y="772" width="334" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="NMa-sr-ht4"/>
                                 </constraints>
@@ -63,33 +63,16 @@
                     <navigationItem key="navigationItem" title="Search" id="2YY-VA-7z1"/>
                     <connections>
                         <outlet property="usernameTextField" destination="cG5-zN-8nn" id="kIl-Ai-aE4"/>
-                        <segue destination="Kgn-9g-b1A" kind="show" id="tkx-bI-ule"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2150.7246376811595" y="-271.20535714285711"/>
         </scene>
-        <!--User Profile View Controller-->
-        <scene sceneID="eqw-Bb-9vW">
-            <objects>
-                <viewController storyboardIdentifier="UserProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kgn-9g-b1A" customClass="UserProfileViewController" customModule="GHSearch" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="HIy-yi-iAx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Otk-zW-Cfo"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="5rB-m1-dhP"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YFZ-uM-6K1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3168" y="-271"/>
-        </scene>
         <!--Bookmarks-->
         <scene sceneID="xhN-5q-ZbY">
             <objects>
-                <tableViewController id="W1g-Ew-t7n" customClass="BookmarksTableVC" customModule="GHSearch" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="BookmarksTableVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="W1g-Ew-t7n" customClass="BookmarksTableVC" customModule="GHSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="3Ur-3b-Pao">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -109,70 +92,11 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OrF-k7-yOp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2454" y="438"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="GY0-Y2-XGM">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="mak-Eu-DY1" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HHK-tq-WHI">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="dQw-6E-6cN" kind="relationship" relationship="viewControllers" id="tTK-8G-9Fd"/>
-                        <segue destination="715-ff-t5w" kind="relationship" relationship="viewControllers" id="2DH-pv-EJ5"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4hf-MF-arG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="128.98550724637681" y="97.767857142857139"/>
-        </scene>
-        <!--Search-->
-        <scene sceneID="8Bm-aM-s78">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dQw-6E-6cN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="95t-co-tP9"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="7cP-w1-NVF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="3jt-Ua-slJ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bwQ-Mn-fne" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1240.5797101449277" y="-271.20535714285711"/>
-        </scene>
-        <!--Bookmakrs-->
-        <scene sceneID="In2-cQ-k7x">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="715-ff-t5w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Bookmakrs" image="bookmark.circle" catalog="system" id="HOf-27-YjH"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Wt9-Y0-Bof">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="W1g-Ew-t7n" kind="relationship" relationship="rootViewController" id="xFW-ow-n6j"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IFI-Bm-teu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1240.5797101449277" y="437.94642857142856"/>
+            <point key="canvasLocation" x="3265" y="-271"/>
         </scene>
     </scenes>
     <resources>
-        <image name="bookmark.circle" catalog="system" width="128" height="121"/>
         <image name="gitavatar" width="800" height="665"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <namedColor name="AccentColor">
             <color red="0.99607843137254903" green="0.53333333333333333" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
