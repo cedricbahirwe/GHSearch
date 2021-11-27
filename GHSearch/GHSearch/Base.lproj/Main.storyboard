@@ -80,27 +80,36 @@
                         <viewLayoutGuide key="safeArea" id="Otk-zW-Cfo"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="5rB-m1-dhP"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="5rB-m1-dhP"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YFZ-uM-6K1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3168" y="-271"/>
         </scene>
         <!--Bookmarks-->
-        <scene sceneID="gkm-uo-XNd">
+        <scene sceneID="xhN-5q-ZbY">
             <objects>
-                <viewController id="bIk-w2-VIc" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sVQ-zJ-maT">
+                <tableViewController id="W1g-Ew-t7n" customClass="BookmarksTableVC" customModule="GHSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="3Ur-3b-Pao">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="sMw-45-C6q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Bookmarks" id="CMQ-DL-ian"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cUZ-gI-YIa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="9R6-1M-P5e">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9R6-1M-P5e" id="iZC-ds-Sou">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Bookmarks" largeTitleDisplayMode="always" id="Cle-ZW-w8c"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OrF-k7-yOp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2150.7246376811595" y="437.94642857142856"/>
+            <point key="canvasLocation" x="2454" y="438"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GY0-Y2-XGM">
@@ -152,7 +161,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="bIk-w2-VIc" kind="relationship" relationship="rootViewController" id="m9i-ta-geh"/>
+                        <segue destination="W1g-Ew-t7n" kind="relationship" relationship="rootViewController" id="xFW-ow-n6j"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IFI-Bm-teu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

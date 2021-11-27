@@ -7,83 +7,164 @@
 
 import UIKit
 
-class BookmarksTableVC: UITableViewController {
 
+
+class BookmarksTableVC: UITableViewController {
+    
+    var users: [User] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        configureViewController()
+        configureTableViewCell()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        getBookmarkedUsers()
+    }
+    
+    func configureViewController() {
+        view.backgroundColor = .systemBackground
+        title = "Bookmarks"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    func configureTableViewCell() {
+        tableView.rowHeight = 80
+//        tableView.removeExcessCells()
+        
+        tableView.register(BookmarkCell.self, forCellReuseIdentifier: String(describing: BookmarkCell.self))
+    }
+    
+    func getBookmarkedUsers() {
+        PersistenceManager.retrieveBookmarks { [self] result in
+            
+            switch result {
+            case .success(let users):
+                self.updateUILayout(with: users)
+                
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.presentAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                }
+            }
+        }
+    }
+    
+    func updateUILayout(with users: [User]) {
+        if users.isEmpty {
+            presentAlert(title: "Ooops!", message: "You have not bookmarked any user yet!", buttonTitle: "Got it!")
+        } else {
+            self.users = users
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
+    
+    override func numberOfSections(in tableView: UITableView) -> Int { return 1 }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        users.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookmarkCell.self)) as! BookmarkCell
+        let user = users[indexPath.row]
+        cell.set(user: user)
+        
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = users[indexPath.row]
+        let userProfileVC = UserProfileViewController(username: user.login)
+        navigationController?.pushViewController(userProfileVC, animated: true)
     }
-    */
-
+    
     /*
+     // Override to support conditional editing of the table view.
+     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+     // Return false if you do not want the specified item to be editable.
+     return true
+     }
+     */
+    
+    
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        
+        guard editingStyle == .delete else { return }
+        
+        PersistenceManager.updateBookmarks(with: users[indexPath.row], actionType: .remove) { [self] error in
+            
+            guard let error = error else {
+                self.users.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .left)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                presentAlert(title: "Unable to remove", message: error.rawValue, buttonTitle: "OK")
+            }
+        }
     }
-    */
+    
+}
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
 
+class BookmarkCell: UITableViewCell {
+    
+    let avatarImageView = GHAvatarImageView(frame: .zero)
+    let usernameLabel = UILabel(frame: .zero)
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func set(user: User) {
+        avatarImageView.image = GHImages.imagePlaceholder
+        avatarImageView.downloadImage(fromURL: user.avatarUrl)
+        usernameLabel.text = user.login
     }
-    */
-
+    
+    private func configureLabel( _ label: UILabel) {
+        label.textAlignment = .left
+        label.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        label.textColor = .label
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.9
+        label.lineBreakMode = .byTruncatingTail
+        label.translatesAutoresizingMaskIntoConstraints = false
+    }
+    private func configure() {
+        
+        configureLabel(usernameLabel)
+        
+        contentView.addSubviews(avatarImageView, usernameLabel)
+        accessoryType = .disclosureIndicator
+        let padding: CGFloat = 12
+        
+        NSLayoutConstraint.activate([
+            avatarImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+            avatarImageView.heightAnchor.constraint(equalToConstant: 60),
+            avatarImageView.widthAnchor.constraint(equalToConstant: 60),
+            
+            usernameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            usernameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 20),
+            usernameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
+            usernameLabel.heightAnchor.constraint(equalToConstant: 38)
+        ])
+    }
 }

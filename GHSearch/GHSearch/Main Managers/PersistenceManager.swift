@@ -21,7 +21,7 @@ enum PersistenceManager {
     }
     
     static func retrieveBookmarks(completed: @escaping (Result<[User], GHSearchError>) -> Void) {
-        retrieve(forKey: Keys.bookmarkedUsers, completion: completed)
+        retrieve(forKey: Keys.bookmarkedUsers, default: [], completion: completed)
     }
     
     static func updateBookmarks(with user: User, actionType: PersistenceOperation, completed: @escaping (GHSearchError?) -> Void) {
@@ -52,25 +52,29 @@ enum PersistenceManager {
     private static func save<T>(data: T, for key: String) -> GHSearchError? where T: Codable {
         do {
             let encoder = JSONEncoder()
-            let encodedFavorites = try encoder.encode(data)
-            defaults.set(encodedFavorites, forKey: key)
+            let encodedData = try encoder.encode(data)
+            defaults.set(encodedData, forKey: key)
             return nil
         } catch {
             return .unableToSave
         }
     }
     
-    private static func retrieve<T: Decodable>(forKey key: String,
+    private static func retrieve<T: Decodable>(forKey key: String, default: T? = nil,
                                                completion: @escaping (Result<T, GHSearchError>) ->  Void) {
         
-        guard let favoritesData = defaults.object(forKey: key) as? Data else {
-            completion(.failure(.notFound))
+        guard let decodedData = defaults.object(forKey: key) as? Data else {
+            guard let defaultValue = `default` else {
+                completion(.failure(.notFound))
+                return
+            }
+            completion(.success(defaultValue))
             return
         }
         
         do {
             let decoder = JSONDecoder()
-            let result = try decoder.decode(T.self, from: favoritesData)
+            let result = try decoder.decode(T.self, from: decodedData)
             completion(.success(result))
         } catch {
             completion(.failure(.invalidData))

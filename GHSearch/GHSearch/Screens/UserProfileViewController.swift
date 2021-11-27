@@ -61,7 +61,7 @@ class UserProfileViewController: DataFetchingActivityVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
+//        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func configureViewController() {
@@ -123,7 +123,6 @@ class UserProfileViewController: DataFetchingActivityVC {
     func presentFollowSheet(type: FollowActivityType, followItems: [Follower]) {
         
         let listView = SampleListView(title: type.title, followers: followItems) { [self] follower in
-            print("whattttt")
             dismiss(animated: true)
             getUserInfo(username: follower.login)
         }
@@ -262,16 +261,14 @@ class UserProfileViewController: DataFetchingActivityVC {
     }
     
     func addUserToBookmarks(user: User) {
-//        let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl, htmlUrl: user.htmlUrl)
-        PersistenceManager.updateWith(bookmark: favorite, actionType: .add) { [weak self] error in
-            guard let self = self else { return }
+        PersistenceManager.updateBookmarks(with: user, actionType: .add) { [self] error in
             
             DispatchQueue.main.async {
                 guard let error = error else {
-                    self.presentAlert(title: "Success!", message: "You have successfully favorited this user 🎉.", buttonTitle: "Hooray!")
+                    presentAlert(title: "Success!", message: "This user has successfully bookmarked.", buttonTitle: "Perfect!")
                     return
                 }
-                self.presentAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                presentAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
             }
         }
     }

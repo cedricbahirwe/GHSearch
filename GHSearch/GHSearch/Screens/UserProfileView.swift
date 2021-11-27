@@ -129,11 +129,11 @@ struct UserProfileView: View {
 }
 
 extension UserProfileView {
-    private func bookmarkUser() {
-        guard let error = PersistenceManager.save(user: user) else { return }
-        alertItem = GHAlertItem(message: error.rawValue)
-        
-    }
+//    private func bookmarkUser() {
+//        guard let error = PersistenceManager.save(user: user) else { return }
+//        alertItem = GHAlertItem(message: error.rawValue)
+//        
+//    }
 }
 
 struct UserProfileView_Previews: PreviewProvider {
