@@ -33,6 +33,12 @@
 		8204C2DE2750D78C00EB9BFB /* GHAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */; };
 		8204C2E02750EB8A00EB9BFB /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */; };
 		8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2E12751105000EB9BFB /* AlertItem.swift */; };
+		821C5C6127528323003643C5 /* GHUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C6027528323003643C5 /* GHUserViewModel.swift */; };
+		821C5C662752845A003643C5 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C652752845A003643C5 /* UserTests.swift */; };
+		821C5C6727528587003643C5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BE2750129400EB9BFB /* User.swift */; };
+		821C5C682752858B003643C5 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2C02750129E00EB9BFB /* Follower.swift */; };
+		821C5C6C27528ADD003643C5 /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C6B27528ADD003643C5 /* MockUser.swift */; };
+		821C5C7127528D96003643C5 /* GHUserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */; };
 		823F4F26275241FA0038EA89 /* FollowActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */; };
 		823F4F282752448D0038EA89 /* SampleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F272752448D0038EA89 /* SampleListView.swift */; };
 		823F4F2A275251CA0038EA89 /* DataFetchingActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */; };
@@ -89,6 +95,10 @@
 		8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHAvatarImageView.swift; sourceTree = "<group>"; };
 		8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		8204C2E12751105000EB9BFB /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
+		821C5C6027528323003643C5 /* GHUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUserViewModel.swift; sourceTree = "<group>"; };
+		821C5C652752845A003643C5 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		821C5C6B27528ADD003643C5 /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
+		821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUserViewModelTests.swift; sourceTree = "<group>"; };
 		823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowActivityTableViewController.swift; sourceTree = "<group>"; };
 		823F4F272752448D0038EA89 /* SampleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListView.swift; sourceTree = "<group>"; };
 		823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchingActivityVC.swift; sourceTree = "<group>"; };
@@ -153,6 +163,7 @@
 				8204C27E27500B9E00EB9BFB /* SceneDelegate.swift */,
 				8204C28027500B9E00EB9BFB /* ViewController.swift */,
 				823F4F272752448D0038EA89 /* SampleListView.swift */,
+				821C5C5F27528313003643C5 /* ViewModels */,
 				8204C2AD27500D3100EB9BFB /* Model */,
 				8204C2B027500D6400EB9BFB /* Custom Reusable Views */,
 				8204C2AC27500BAC00EB9BFB /* Screens */,
@@ -171,6 +182,9 @@
 			isa = PBXGroup;
 			children = (
 				8204C29327500BA200EB9BFB /* GHSearchTests.swift */,
+				821C5C6D27528CE8003643C5 /* ViewModel */,
+				821C5C6A27528AC6003643C5 /* Mockup */,
+				821C5C622752843A003643C5 /* Model */,
 			);
 			path = GHSearchTests;
 			sourceTree = "<group>";
@@ -244,6 +258,38 @@
 				8204C2BA2750111000EB9BFB /* GHSearchError.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		821C5C5F27528313003643C5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				821C5C6027528323003643C5 /* GHUserViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		821C5C622752843A003643C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				821C5C652752845A003643C5 /* UserTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		821C5C6A27528AC6003643C5 /* Mockup */ = {
+			isa = PBXGroup;
+			children = (
+				821C5C6B27528ADD003643C5 /* MockUser.swift */,
+			);
+			path = Mockup;
+			sourceTree = "<group>";
+		};
+		821C5C6D27528CE8003643C5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		823F4F2F275272B60038EA89 /* SwiftUI */ = {
@@ -402,6 +448,7 @@
 				8204C27D27500B9E00EB9BFB /* AppDelegate.swift in Sources */,
 				8204C27F27500B9E00EB9BFB /* SceneDelegate.swift in Sources */,
 				8204C2B9275010F000EB9BFB /* PersistenceManager.swift in Sources */,
+				821C5C6127528323003643C5 /* GHUserViewModel.swift in Sources */,
 				823F4F282752448D0038EA89 /* SampleListView.swift in Sources */,
 				8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */,
 				823F4F2E2752697D0038EA89 /* UIView+Extension.swift in Sources */,
@@ -427,7 +474,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821C5C6C27528ADD003643C5 /* MockUser.swift in Sources */,
+				821C5C662752845A003643C5 /* UserTests.swift in Sources */,
+				821C5C7127528D96003643C5 /* GHUserViewModelTests.swift in Sources */,
 				8204C29427500BA200EB9BFB /* GHSearchTests.swift in Sources */,
+				821C5C6727528587003643C5 /* User.swift in Sources */,
+				821C5C682752858B003643C5 /* Follower.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
