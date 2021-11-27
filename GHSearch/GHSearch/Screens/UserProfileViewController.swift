@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol UserInfoVCDelegate: AnyObject {
-    func didRequestFollowers(for username: String)
+    func didRequestFollowers(for username: String, page: Int)
     
     func didRequestShowProfile(for username: String)
 }
@@ -34,8 +34,7 @@ class UserProfileViewController: DataFetchingActivityVC {
     
     var username: String!
     var user: User!
-//    var followers: [Follower] = []
-//    var filteredFollowers: [Follower] = []
+    
 //    var page = 1
 //    var hasMoreFollowers = true
 //    var isSearching = false
@@ -92,13 +91,12 @@ class UserProfileViewController: DataFetchingActivityVC {
     
     func getFollowers(for user: User) {
         guard user.following > 0 else {
-            presentAlert(title: "Ooops, No Followers!!!", message: "This user has no followers🤷🏽‍♂️.", buttonTitle: "Alright😟")
+            presentAlert(title: "Oops, No Followers.", message: "This user has no followers🤷🏽‍♂️.", buttonTitle: "Okay")
             return
         }
         Task {
             do {
                 let followers = try await NetworkingManager.shared.getFollowers(for: user.login, page: 1)
-                print("Followers: ", followers)
                 presentFollowSheet(for: .follower, followItems: followers)
             } catch {
                 print("There is a error: ", error.localizedDescription)
@@ -113,14 +111,13 @@ class UserProfileViewController: DataFetchingActivityVC {
     
     func getFollowings(for user: User) {
         guard user.following > 0 else {
-            presentAlert(title: "Ooops, No Followings!!!", message: "This user has no followings🤷🏽‍♂️.", buttonTitle: "Alright😟")
+            presentAlert(title: "Oops, No Followings!!!", message: "This user has no followings🤷🏽‍♂️.", buttonTitle: "Okay")
             return
         }
         
         Task {
             do {
-                let followings = try await NetworkingManager.shared.getFollowing(for: user.login, page: 1)
-                print("Followings: ", followings)
+                let followings = try await NetworkingManager.shared.getFollowings(for: user.login, page: 1)
                 presentFollowSheet(for: .following, followItems: followings)
             } catch {
                 print("There is a error: ", error.localizedDescription)
@@ -138,7 +135,7 @@ class UserProfileViewController: DataFetchingActivityVC {
             presentAlert(title: "Ooops, No \(followType.title)!!!", message: "This user has no \(followType.title)🤷🏽‍♂️.", buttonTitle: "Alright😟")
             return
         }
-        let listView =  SampleListView(title: followType.title, followers: followItems, delegate: self)
+        let listView =  SampleListView(username: user.login, title: followType.title, followers: followItems, delegate: self)
         let listVC = UIHostingController(rootView: listView)
 
         present(listVC, animated: true)
@@ -334,12 +331,12 @@ extension UserProfileViewController: UserInfoVCDelegate {
         getUserInfo(username: username)
     }
     
-    func didRequestFollowers(for username: String) {
+    func didRequestFollowers(for username: String, page: Int) {
         
     }
     
 //
-//    func didRequestFollowers(for username: String) {
+    func didRequestFollowers(for username: String) {
 //        self.username = username
 //        title = username
 //        page = 1
@@ -348,5 +345,5 @@ extension UserProfileViewController: UserInfoVCDelegate {
 //        filteredFollowers.removeAll()
 //        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
 //        getFollowers(username: username, page: page)
-//    }
+    }
 }

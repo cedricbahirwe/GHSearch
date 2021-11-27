@@ -12,10 +12,17 @@ struct SampleListView: View {
     @Environment(\.dismiss)
     private var dismiss
     
+    var username: String
     let title: String
-    var followers: [Follower]
+   @State var followers: [Follower]
     var delegate: UserInfoVCDelegate!
 //    var onShowProfile: (Follower) -> Void
+    
+    @State private var page: Int = 1
+    
+    @State private var hasMoreData = true
+    @State private var isFetchingMoreData = false
+    
     var body: some View {
         NavigationView {
             List {
@@ -25,8 +32,22 @@ struct SampleListView: View {
                         delegate.didRequestShowProfile(for: follower.login)
                     }
                 }
+                
+                
+                if  hasMoreData, !isFetchingMoreData  {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .scaleEffect(1.3)
+                        .frame(maxWidth: .infinity)
+                        .onAppear {
+                            page += 1
+                            requestFollowers()
+                            print("Appeared")
+//                            delegate.didRequestFollowers(for: <#T##String#>)
+                        }
+                }
             }
-            .navigationBarTitle(title)
+            .navigationBarTitle("\(title) \(followers.count)")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
@@ -39,11 +60,30 @@ struct SampleListView: View {
         .navigationViewStyle(StackNavigationViewStyle())
        
     }
+    
+    private func requestFollowers() {
+        Task {
+            isFetchingMoreData = true
+            let followers = try await NetworkingManager.shared.getFollowings(for: username, page: page)
+            print("Got ", followers.count)
+            isFetchingMoreData  = false
+            if followers.count < 10 { hasMoreData = false }
+            self.followers.append(contentsOf: followers)
+            
+            if self.followers.isEmpty {
+                let message = "This user doesn't have any followers. Go follow them 😀."
+                print(message)
+                //            DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
+                return
+            }
+            
+        }
+    }
 }
 
 struct SampleListView_Previews: PreviewProvider {
     static var previews: some View {
-        SampleListView(title: "Follows", followers: []) //{ _ in }
+        SampleListView(username: "Username", title: "Follows", followers: []) //{ _ in }
     }
 }
 

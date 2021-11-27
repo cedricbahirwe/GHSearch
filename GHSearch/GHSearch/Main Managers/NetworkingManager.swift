@@ -42,7 +42,7 @@ final class NetworkingManager {
         }
     }
     
-    func getFollowing(for username: String, page: Int) async throws -> [Follower] {
+    func getFollowings(for username: String, page: Int) async throws -> [Follower] {
         let endpoint = baseUrl + "\(username)/following?per_page=10&page=\(page)"
         
         guard let url = URL(string: endpoint) else {
