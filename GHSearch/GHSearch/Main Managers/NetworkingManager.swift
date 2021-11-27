@@ -23,7 +23,27 @@ final class NetworkingManager {
     
     
     func getFollowers(for username: String, page: Int) async throws -> [Follower] {
-        let endpoint = baseUrl + "\(username)/followers?per_page=100&page=\(page)"
+        let endpoint = baseUrl + "\(username)/followers?per_page=10&page=\(page)"
+        
+        guard let url = URL(string: endpoint) else {
+            throw GHSearchError.invalidUsername
+        }
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw GHSearchError.invalidResponse
+        }
+        
+        do {
+            return try decoder.decode([Follower].self, from: data)
+        } catch {
+            throw GHSearchError.invalidData
+        }
+    }
+    
+    func getFollowing(for username: String, page: Int) async throws -> [Follower] {
+        let endpoint = baseUrl + "\(username)/following?per_page=10&page=\(page)"
         
         guard let url = URL(string: endpoint) else {
             throw GHSearchError.invalidUsername
@@ -47,9 +67,9 @@ final class NetworkingManager {
         guard let url = URL(string: endpoint) else { throw GHSearchError.invalidUsername }
         let (data, response) = try await URLSession.shared.data(from: url)
         guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw GHSearchError.invalidResponse }
-        if let json =  try? JSONSerialization.jsonObject(with: data, options: []) {
-            print("JSon", json)
-        }
+//        if let json =  try? JSONSerialization.jsonObject(with: data, options: []) {
+//            print("JSon", json)
+//        }
         do {
             return try decoder.decode(User.self, from: data)
         } catch {

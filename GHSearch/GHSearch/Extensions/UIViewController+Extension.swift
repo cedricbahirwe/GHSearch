@@ -17,5 +17,11 @@ extension UIViewController {
         alertVC.addAction(dismissAction)
         self.present(alertVC, animated: true)
     }
+    
+    func presentUnknownError() {
+        presentAlert(title: "Something Went Wrong",
+                     message:  "We were unable to complete your request at this time. Please try again.",
+                     buttonTitle: "OK")
+    }
 }
 

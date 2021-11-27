@@ -13,51 +13,41 @@ enum PersistenceManager {
     static private let defaults = UserDefaults.standard
     
     enum Keys {
-        static let followers = "followers"
-        static let user = "user"
+        static let bookmarkedUsers = "bookmarkedUsers"
     }
     
-    static func save(bookmarks: [Follower]) -> GHSearchError? {
-        save(data: bookmarks, for: Keys.followers)
+    static func save(bookmarks: [User]) -> GHSearchError? {
+        save(data: bookmarks, for: Keys.bookmarkedUsers)
     }
     
-    static func save(user: User) -> GHSearchError? {
-        save(data: user, for: Keys.user)
+    static func retrieveBookmarks(completed: @escaping (Result<[User], GHSearchError>) -> Void) {
+        retrieve(forKey: Keys.bookmarkedUsers, completion: completed)
     }
     
-    static func retrieveBookmarks(completed: @escaping (Result<[Follower], GHSearchError>) -> Void) {
-        retrieve(forKey: Keys.followers, completion: completed)
-    }
-    
-    static func updateWith(bookmark: Follower, actionType: PersistenceOperation, completed: @escaping (GHSearchError?) -> Void) {
+    static func updateBookmarks(with user: User, actionType: PersistenceOperation, completed: @escaping (GHSearchError?) -> Void) {
         retrieveBookmarks { result in
             switch result {
-            case .success(var bookmarks):
+            case .success(var bookmarkedUsers):
                 switch actionType {
                 case .add:
-                    guard !bookmarks.contains(bookmark) else {
+                    guard !bookmarkedUsers.contains(user) else {
                         completed(.alreadyInBookmarks)
                         return
                     }
                     
-                    bookmarks.append(bookmark)
+                    bookmarkedUsers.append(user)
                     
                 case .remove:
-                    bookmarks.removeAll { $0.login == bookmark.login }
+                    bookmarkedUsers.removeAll { $0.login == user.login }
                 }
                 
-                completed(save(bookmarks: bookmarks))
+                completed(save(bookmarks: bookmarkedUsers))
                 
             case .failure(let error):
                 completed(error)
             }
         }
     }
-    
-    static func retrieveUser(completed: @escaping (Result<User, GHSearchError>) -> Void) {
-        retrieve(forKey: Keys.user, completion: completed)
-    }
-    
     
     private static func save<T>(data: T, for key: String) -> GHSearchError? where T: Codable {
         do {

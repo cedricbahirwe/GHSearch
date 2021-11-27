@@ -73,7 +73,7 @@
         <!--User Profile View Controller-->
         <scene sceneID="eqw-Bb-9vW">
             <objects>
-                <viewController id="Kgn-9g-b1A" customClass="UserProfileViewController" customModule="GHSearch" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserProfileViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kgn-9g-b1A" customClass="UserProfileViewController" customModule="GHSearch" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HIy-yi-iAx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,7 +86,7 @@
             </objects>
             <point key="canvasLocation" x="3168" y="-271"/>
         </scene>
-        <!--Followers-->
+        <!--Bookmarks-->
         <scene sceneID="gkm-uo-XNd">
             <objects>
                 <viewController id="bIk-w2-VIc" sceneMemberID="viewController">
@@ -96,7 +96,7 @@
                         <viewLayoutGuide key="safeArea" id="sMw-45-C6q"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Followers" id="CMQ-DL-ian"/>
+                    <navigationItem key="navigationItem" title="Bookmarks" id="CMQ-DL-ian"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUZ-gI-YIa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,6 +108,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="mak-Eu-DY1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HHK-tq-WHI">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -139,11 +140,11 @@
             </objects>
             <point key="canvasLocation" x="1240.5797101449277" y="-271.20535714285711"/>
         </scene>
-        <!--Saved-->
+        <!--Bookmakrs-->
         <scene sceneID="In2-cQ-k7x">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="715-ff-t5w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Saved" image="icloud.and.arrow.down.fill" catalog="system" id="HOf-27-YjH"/>
+                    <tabBarItem key="tabBarItem" title="Bookmakrs" image="bookmark.circle" catalog="system" id="HOf-27-YjH"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="Wt9-Y0-Bof">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -160,8 +161,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bookmark.circle" catalog="system" width="128" height="121"/>
         <image name="gitavatar" width="800" height="665"/>
-        <image name="icloud.and.arrow.down.fill" catalog="system" width="128" height="112"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <namedColor name="AccentColor">

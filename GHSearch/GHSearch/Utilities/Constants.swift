@@ -16,5 +16,5 @@ enum ScreenSize {
 
 
 enum GHImages {
-    static let imagePlaceholder = UIImage(named: "gitavatar-placeholder")
+    static let imagePlaceholder = UIImage(named: "avatar-placeholder")
 }
