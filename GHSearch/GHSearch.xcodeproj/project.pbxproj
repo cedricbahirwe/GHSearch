@@ -43,6 +43,7 @@
 		821C5C732752976D003643C5 /* GHSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BA2750111000EB9BFB /* GHSearchError.swift */; };
 		821C5C762752A287003643C5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 821C5C752752A287003643C5 /* Alamofire */; };
 		821C5C782752A7AA003643C5 /* ReadOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C772752A7AA003643C5 /* ReadOnce.swift */; };
+		821C5C7A27539AEF003643C5 /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */; };
 		823F4F26275241FA0038EA89 /* FollowActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */; };
 		823F4F282752448D0038EA89 /* SampleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F272752448D0038EA89 /* SampleListView.swift */; };
 		823F4F2A275251CA0038EA89 /* DataFetchingActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */; };
@@ -104,6 +105,7 @@
 		821C5C6B27528ADD003643C5 /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
 		821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUserViewModelTests.swift; sourceTree = "<group>"; };
 		821C5C772752A7AA003643C5 /* ReadOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnce.swift; sourceTree = "<group>"; };
+		821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 		823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowActivityTableViewController.swift; sourceTree = "<group>"; };
 		823F4F272752448D0038EA89 /* SampleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListView.swift; sourceTree = "<group>"; };
 		823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchingActivityVC.swift; sourceTree = "<group>"; };
@@ -169,7 +171,7 @@
 				8204C27E27500B9E00EB9BFB /* SceneDelegate.swift */,
 				8204C28027500B9E00EB9BFB /* ViewController.swift */,
 				823F4F272752448D0038EA89 /* SampleListView.swift */,
-				821C5C5F27528313003643C5 /* ViewModels */,
+				821C5C5F27528313003643C5 /* ViewModel */,
 				8204C2AD27500D3100EB9BFB /* Model */,
 				8204C2B027500D6400EB9BFB /* Custom Reusable Views */,
 				8204C2AC27500BAC00EB9BFB /* Screens */,
@@ -267,12 +269,13 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		821C5C5F27528313003643C5 /* ViewModels */ = {
+		821C5C5F27528313003643C5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				821C5C6027528323003643C5 /* GHUserViewModel.swift */,
+				821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */,
 			);
-			path = ViewModels;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		821C5C622752843A003643C5 /* Model */ = {
@@ -468,6 +471,7 @@
 				8204C2D42750C65D00EB9BFB /* UserProfileViewController.swift in Sources */,
 				8204C2DC2750D51700EB9BFB /* UserProfileView.swift in Sources */,
 				8204C2BF2750129400EB9BFB /* User.swift in Sources */,
+				821C5C7A27539AEF003643C5 /* BookmarksViewModel.swift in Sources */,
 				8204C2BB2750111000EB9BFB /* GHSearchError.swift in Sources */,
 				823F4F37275273100038EA89 /* UserInfoSectionView.swift in Sources */,
 				823F4F2C27525B100038EA89 /* BookmarksTableVC.swift in Sources */,

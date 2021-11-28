@@ -9,11 +9,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
 class GHUserViewModel {
 //    var username: String = ""
 
-    var selectedUser = BehaviorSubject<User?>(value: nil)
+    var selectedUser = BehaviorRelay<User?>(value: nil)
     
     let onShowError = PublishSubject<GHSearchError>()
     let apiClient: NetworkingManager
@@ -43,7 +42,8 @@ class GHUserViewModel {
                     print("Got response")
                     self?.loadInProgress.accept(false)
                     
-                    self?.selectedUser.onNext(userInfo)
+                    self?.selectedUser.accept(userInfo)
+                    
                 },
                 onError: { [weak self] error in
                     self?.loadInProgress.accept(false)
