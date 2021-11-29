@@ -112,65 +112,12 @@ class GHUserViewModel: ObservableObject {
             .disposed(by: disposeBag)
     }
     
-    
-//    private func getFollowers(username: String, page: Int) {
-//        loadInProgress.accept(true)
-//
-//        apiClient
-//            .getFollowers(for: username, page: page)
-//            .subscribe(
-//                onNext: { [weak self] newFollowers in
-//                    self?.loadInProgress.accept(false)
-//                    if page == 1 {
-//                        self?.followers.accept(newFollowers)
-//                    } else {
-//                        self?.followers.accept(self!.followers.value  + newFollowers)
-//                    }
-//                },
-//                onError: { [weak self] error in
-//                    self?.loadInProgress.accept(false)
-//                    print("Never response")
-//                    self?.onShowError.onNext((error as? GHSearchError ?? GHSearchError.invalidResponse))
-//                }
-//            )
-//            .disposed(by: disposeBag)
-//
-//    }
-    
-    
-//    private func getFollowing(username: String, page: Int) {
-//        loadInProgress.accept(true)
-//
-//        apiClient
-//            .getFollowing(for: username, page: page)
-//            .subscribe(
-//                onNext: { [weak self] newFollowing in
-//                    self?.loadInProgress.accept(false)
-//                    if page == 1 {
-//                        self?.followers.accept(newFollowing)
-//                    } else {
-//                        self?.followers.accept(self!.followers.value  + newFollowing)
-//                    }
-//                    if newFollowing.count < 10 {
-//                        self?.hasMoreFollowers = false
-//                    }
-//                },
-//                onError: { [weak self] error in
-//                    self?.loadInProgress.accept(false)
-//                    print("Never response")
-////                    "Oops, No Followings!!!", message: "This user does not follow anyone🤷🏽‍♂️.", buttonTitle: "Okay"
-//                    self?.onShowError.onNext((error as? GHSearchError ?? GHSearchError.invalidResponse))
-//                }
-//            )
-//            .disposed(by: disposeBag)
-//
-//    }
-    
-    
     func initializeFollowList() {
         followers.accept([])
         pageCounter = 1
         hasMoreFollowers = true
+        
+        print("Empting")
     }
     
 }

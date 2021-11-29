@@ -49,10 +49,11 @@ class FollowActivityTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         layout()
         
         tableViewBind()
+        
+        viewModel.initializeFollowList()
         
         viewModel.fetchMoreFollowers.onNext(())
         
@@ -63,11 +64,6 @@ class FollowActivityTableViewController: UIViewController {
         navigationItem.rightBarButtonItem = doneButton
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        viewModel.followers = []
-        
-    }
     
     @objc func doneButtonTapped() {
         dismiss(animated: true, completion: nil)
