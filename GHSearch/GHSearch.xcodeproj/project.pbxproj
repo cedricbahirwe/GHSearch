@@ -42,7 +42,6 @@
 		821C5C722752972E003643C5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BC2750113800EB9BFB /* NetworkingManager.swift */; };
 		821C5C732752976D003643C5 /* GHSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BA2750111000EB9BFB /* GHSearchError.swift */; };
 		821C5C762752A287003643C5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 821C5C752752A287003643C5 /* Alamofire */; };
-		821C5C782752A7AA003643C5 /* ReadOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C772752A7AA003643C5 /* ReadOnce.swift */; };
 		821C5C7A27539AEF003643C5 /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */; };
 		823D7EE52754A6530091D2B2 /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE42754A6530091D2B2 /* BookmarkCell.swift */; };
 		823D7EE72754C1650091D2B2 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */; };
@@ -105,7 +104,6 @@
 		821C5C652752845A003643C5 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		821C5C6B27528ADD003643C5 /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
 		821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUserViewModelTests.swift; sourceTree = "<group>"; };
-		821C5C772752A7AA003643C5 /* ReadOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnce.swift; sourceTree = "<group>"; };
 		821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 		823D7EE42754A6530091D2B2 /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
 		823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
@@ -212,9 +210,8 @@
 			isa = PBXGroup;
 			children = (
 				8204C2C92750BAB300EB9BFB /* MainTabViewController.swift */,
-				8204C2D32750C65D00EB9BFB /* UserProfileViewController.swift */,
 				8204C2D12750C51600EB9BFB /* SearchViewController.swift */,
-				8204C2DB2750D51700EB9BFB /* UserProfileView.swift */,
+				8204C2D32750C65D00EB9BFB /* UserProfileViewController.swift */,
 				823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */,
 				823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */,
 				823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */,
@@ -267,7 +264,6 @@
 			children = (
 				8204C2B227500FF100EB9BFB /* Constants.swift */,
 				8204C2BA2750111000EB9BFB /* GHSearchError.swift */,
-				821C5C772752A7AA003643C5 /* ReadOnce.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -319,6 +315,7 @@
 				823F4F38275273790038EA89 /* LocationLabel.swift */,
 				823F4F32275272E90038EA89 /* GHAvatarView.swift */,
 				823F4F362752730F0038EA89 /* UserInfoSectionView.swift */,
+				8204C2DB2750D51700EB9BFB /* UserProfileView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -474,7 +471,6 @@
 				8204C2B9275010F000EB9BFB /* PersistenceManager.swift in Sources */,
 				821C5C6127528323003643C5 /* GHUserViewModel.swift in Sources */,
 				823F4F282752448D0038EA89 /* FollowsListView.swift in Sources */,
-				821C5C782752A7AA003643C5 /* ReadOnce.swift in Sources */,
 				823D7EE72754C1650091D2B2 /* BookmarksViewController.swift in Sources */,
 				8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */,
 				823F4F2E2752697D0038EA89 /* UIView+Extension.swift in Sources */,

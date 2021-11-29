@@ -101,6 +101,7 @@ class NetworkingManager {
                             observer.onError(error)
                         }
                     case .failure(let error):
+                        print(error)
                         observer.onError(error)
                     }
                 }

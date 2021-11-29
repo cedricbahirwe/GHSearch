@@ -6,84 +6,120 @@
 //
 
 import UIKit
+import RxSwift
 
-class FollowActivityTableViewController: UITableViewController {
-
+class FollowActivityTableViewController: UIViewController {
+    var viewModel: GHUserViewModel!
+    private let disposeBag = DisposeBag()
+        
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = .clear
+        tableView.register(UITableViewCell.self,
+                           forCellReuseIdentifier: UITableViewCell.description())
+        tableView.estimatedRowHeight = 44
+        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.refreshControl = refreshControl
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.delegate = self
+        return tableView
+    }()
+    
+    private lazy var viewSpinner: UIView = {
+            let view = UIView(frame: CGRect(
+                                x: 0,
+                                y: 0,
+                                width: view.frame.size.width,
+                                height: 100)
+            )
+            let spinner = UIActivityIndicatorView()
+            spinner.center = view.center
+            view.addSubview(spinner)
+            spinner.startAnimating()
+            return view
+        }()
+    
+    var titles: String {
+        let ele = viewModel.followers.value.count
+        title  = ele.description
+        return ""
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        
+        layout()
+        
+        tableViewBind()
+        
+        viewModel.fetchMoreFollowers.onNext(())
+        
+        title =  viewModel.followType?.title ?? "XXXXX"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
+        navigationItem.rightBarButtonItem = doneButton
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        viewModel.followers = []
+        
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    @objc func doneButtonTapped() {
+        dismiss(animated: true, completion: nil)
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    private func layout() {
+        view.backgroundColor = .white
+        
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+        ])
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    private func tableViewBind() {
+        viewModel.followers.bind(to: tableView.rx.items) { tableView, _, item in
+            let cell = tableView
+                .dequeueReusableCell(withIdentifier: UITableViewCell.description())
+            cell?.textLabel?.text = item.login
+            cell?.selectionStyle = .none
+            return cell ?? UITableViewCell()
+        }
+        .disposed(by: disposeBag)
+        
+        tableView.rx.didScroll.subscribe { [weak self] _ in
+            guard let self = self else { return }
+            let offSetY = self.tableView.contentOffset.y
+            let contentHeight = self.tableView.contentSize.height
+            
+            if offSetY > (contentHeight - self.tableView.frame.size.height - 20) {
+                self.viewModel.fetchMoreFollowers.onNext(())
+            }
+        }
+        .disposed(by: disposeBag)
+        
+        viewModel.showFollowersListSpinner.subscribe { [weak self] isShown in
+            guard let isAvaliable = isShown.element,
+                  let self = self else { return }
+            self.tableView.tableFooterView = isAvaliable ? self.viewSpinner : UIView(frame: .zero)
+        }
+        .disposed(by: disposeBag)
     }
-    */
+    
+    
+}
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+
+extension FollowActivityTableViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

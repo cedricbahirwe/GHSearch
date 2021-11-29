@@ -10,9 +10,6 @@ import SwiftUI
 import RxSwift
 
 protocol UserInfoVCDelegate: AnyObject {
-    func didRequestFollowers(for username: String, page: Int)
-    func didRequestFollowing(for username: String, page: Int)
-    
     func didRequestShowProfile(for username: String)
 }
 
@@ -32,8 +29,6 @@ class UserProfileViewController: DataFetchingActivityVC {
     var userViewModel: GHUserViewModel! // = GHUserViewModel()
     
     private let disposeBag = DisposeBag()
-    
-    private var selectUser = ReadOnce<User>(nil)
     
     enum Section {
         case main
@@ -103,13 +98,12 @@ class UserProfileViewController: DataFetchingActivityVC {
     }
     
     func getFollowers(for user: User) {
-        print("Damn")
         guard user.followers > 0 else {
             presentAlert(title: "Oops, No Followers.", message: "This user has no followers🤷🏽‍♂️.", buttonTitle: "Okay")
             return
         }
-        
-        userViewModel.getFollows(typeof: .followers, username: user.login)
+        userViewModel.followType = .followers
+        presentFollowSheet()
     }
     
     func getFollowings(for user: User) {
@@ -117,22 +111,15 @@ class UserProfileViewController: DataFetchingActivityVC {
             presentAlert(title: "Oops, No Followings!!!", message: "This user does not follow anyone🤷🏽‍♂️.", buttonTitle: "Okay")
             return
         }
-        
-        userViewModel.getFollows(typeof: .followings, username: user.login)
-        
+        userViewModel.followType = .followings
+        presentFollowSheet()
     }
     
-    func presentFollowSheet(for followType: FollowActivityType, followItems: [Follower]) {
-        
-        guard !followItems.isEmpty else {
-            presentAlert(title: "Oops, No \(followType.title)!!!", message: "This user has no \(followType.title)🤷🏽‍♂️.", buttonTitle: "Alright😟")
-            return
-        }
-        
-        let listView = FollowsListView(userViewModel: userViewModel, followType: followType, delegate: self)
-        let listVC = UIHostingController(rootView: listView)
-
-        present(listVC, animated: true)
+    func presentFollowSheet() {
+        let listVC = FollowActivityTableViewController()
+        listVC.viewModel = userViewModel
+        listVC.modalPresentationStyle = .fullScreen
+        present(UINavigationController(rootViewController: listVC), animated: true)
         
     }
     
@@ -145,14 +132,6 @@ class UserProfileViewController: DataFetchingActivityVC {
             .subscribe()
             .disposed(by: disposeBag)
         
-        userViewModel.followers
-            .map { [weak self] followers in
-                guard !followers.isEmpty else { return }
-                self?.presentFollowSheet(for: .followers, followItems: followers)
-            }
-            .subscribe()
-            .disposed(by: disposeBag)
-
         userViewModel
             .onShowError
             .map { [weak self] in self?.presentAlert(title: "Oops!", message: $0.rawValue, buttonTitle: "OK") }
@@ -191,57 +170,9 @@ class UserProfileViewController: DataFetchingActivityVC {
     }
 }
 
-extension UserProfileViewController: UICollectionViewDelegate {
-    
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//        let height = scrollView.frame.size.height
-//
-//        if offsetY > contentHeight - height {
-//            guard hasMoreFollowers, !isLoadingMoreFollowers else { return }
-//            page += 1
-//            getFollowers(username: username, page: page)
-//        }
-//    }
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let activeArray = isSearching ? filteredFollowers : followers
-//        let follower = activeArray[indexPath.item]
-//
-//        let userInfoVC = UserInfoVC()
-//        userInfoVC.username = follower.login
-//        userInfoVC.delegate = self
-//        let navController = UINavigationController(rootViewController: userInfoVC)
-//        present(navController, animated: true)
-//    }
-}
-
-
-
 extension UserProfileViewController: UserInfoVCDelegate {
-    func didRequestFollowing(for username: String, page: Int) {
-        print("didRequestFollowing")
-    }
-    
     func didRequestShowProfile(for username: String) {
         dismiss(animated: true)
         userViewModel.getUserInfo(for: username)
-//        getUserInfo(username: username)
-    }
-    
-    func didRequestFollowers(for username: String, page: Int) {
-        printContent("didRequestFollowers")
-    }
-    
-    func didRequestFollowers(for username: String) {
-//        self.username = username
-//        title = username
-//        page = 1
-//
-//        followers.removeAll()
-//        filteredFollowers.removeAll()
-//        collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-//        getFollowers(username: username, page: page)
     }
 }
