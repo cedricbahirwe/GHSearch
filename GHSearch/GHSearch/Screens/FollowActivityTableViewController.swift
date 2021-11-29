@@ -66,7 +66,7 @@ class FollowActivityTableViewController: UIViewController {
     }
     
     private func layout() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
