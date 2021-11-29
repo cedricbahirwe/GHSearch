@@ -57,6 +57,7 @@ class GHUserViewModel: ObservableObject {
             .disposed(by: disposeBag)
     }
     
+    
     func getFollows(typeof followType: FollowActivityType, username: String, page: Int = 1) {
         loadInProgress.accept(true)
 
@@ -130,6 +131,38 @@ class GHUserViewModel: ObservableObject {
             )
             .disposed(by: disposeBag)
         
+    }
+    
+    
+    func delete(bookmarkedUser: UserCellViewModel) {
+        
+        PersistenceManager.updateBookmarks(with: bookmarkedUser, actionType: .remove) { [self] error in
+            
+            guard let error = error else {
+                self.bookmarkedUsers.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .left)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                presentAlert(title: "Unable to remove", message: error.rawValue, buttonTitle: "OK")
+            }
+        }
+//            .deleteFriend(id: friend.id)
+//            .subscribe(
+//                onNext: { [weak self] friends in
+//                    self?.getFriends()
+//                },
+//                onError: { [weak self] error in
+//                    let okAlert = SingleButtonAlert(
+//                        title: (error as? AppServerClient.DeleteFriendFailureReason)?.getErrorMessage() ?? "Could not connect to server. Check your network and try again later.",
+//                        message: "Could not remove \(friend.firstname) \(friend.lastname).",
+//                        action: AlertAction(buttonTitle: "OK", handler: { print("Ok pressed!") })
+//                    )
+//                    self?.onShowError.onNext(okAlert)
+//                }
+//            )
+//            .disposed(by: disposeBag)
     }
     
 }

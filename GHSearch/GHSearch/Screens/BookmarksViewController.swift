@@ -100,7 +100,7 @@ extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
             }
             
             DispatchQueue.main.async {
-                presentAlert(title: "Unable to remove", message: error.rawValue, buttonTitle: "OK")
+                presentAlert(title: "Unable to remove", message: error.rawValue, buttonTitle: "Dismiss")
             }
         }
     }
