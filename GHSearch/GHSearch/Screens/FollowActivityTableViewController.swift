@@ -11,7 +11,7 @@ import RxSwift
 class FollowActivityTableViewController: UIViewController {
     var viewModel: GHUserViewModel!
     private let disposeBag = DisposeBag()
-        
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
@@ -26,24 +26,19 @@ class FollowActivityTableViewController: UIViewController {
     }()
     
     private lazy var viewSpinner: UIView = {
-            let view = UIView(frame: CGRect(
-                                x: 0,
-                                y: 0,
-                                width: view.frame.size.width,
-                                height: 100)
-            )
-            let spinner = UIActivityIndicatorView()
-            spinner.center = view.center
-            view.addSubview(spinner)
-            spinner.startAnimating()
-            return view
-        }()
+        let view = UIView(frame: CGRect(
+            x: 0,
+            y: 0,
+            width: view.frame.size.width,
+            height: 100)
+        )
+        let spinner = UIActivityIndicatorView()
+        spinner.center = view.center
+        view.addSubview(spinner)
+        spinner.startAnimating()
+        return view
+    }()
     
-    var titles: String {
-        let ele = viewModel.followers.value.count
-        title  = ele.description
-        return ""
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +51,7 @@ class FollowActivityTableViewController: UIViewController {
         
         viewModel.fetchMoreDatas.onNext(())
         
-        title =  viewModel.followType?.title ?? "XXXXX"
+        title =  viewModel.followType?.title
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonTapped))
@@ -82,7 +77,7 @@ class FollowActivityTableViewController: UIViewController {
     
     private func bind() {
         tableViewBind()
-
+        
         viewModel.isLoadingSpinnerAvaliable.subscribe { [weak self] isAvaliable in
             guard let isAvaliable = isAvaliable.element,
                   let self = self else { return }
@@ -92,22 +87,21 @@ class FollowActivityTableViewController: UIViewController {
     }
     
     private func tableViewBind() {
-
+        
         viewModel.followers.bind(to: tableView.rx.items) { tableView, _, item in
             let cell = tableView
                 .dequeueReusableCell(withIdentifier: UITableViewCell.description())
             cell?.selectionStyle = .none
             cell?.textLabel?.text = item.login
-            self.title = self.viewModel.followType!.title + self.viewModel.followers.value.count.description
             return cell ?? UITableViewCell()
         }
         .disposed(by: disposeBag)
-
+        
         tableView.rx.didScroll.subscribe { [weak self] _ in
             guard let self = self else { return }
             let offSetY = self.tableView.contentOffset.y
             let contentHeight = self.tableView.contentSize.height
-
+            
             if offSetY > (contentHeight - self.tableView.frame.size.height - 20) {
                 self.viewModel.fetchMoreDatas.onNext(())
             }
