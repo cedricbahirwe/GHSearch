@@ -9,15 +9,17 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+protocol UserInfoVCDelegate: AnyObject {
+    func didRequestShowProfile(for username: String)
+}
+
 class GHUserViewModel: ObservableObject {
     
     var selectedUser = BehaviorRelay<User?>(value: nil)
     
     var followers = BehaviorRelay<[Follower]>(value: [])
-//    let fetchMoreFollowers = PublishSubject<Void>()
-//    let showFollowersListSpinner = PublishSubject<Bool>()
+    
     var followType: FollowActivityType? = nil
-//    private var pageCounter = 1
     var hasMoreFollowers = true
     let fetchMoreDatas = PublishSubject<Void>()
     let isLoadingSpinnerAvaliable = PublishSubject<Bool>()
@@ -35,6 +37,9 @@ class GHUserViewModel: ObservableObject {
             .distinctUntilChanged()
     }
     let disposeBag = DisposeBag()
+    
+    var delegate: UserInfoVCDelegate?
+    
     
     private let loadInProgress = BehaviorRelay(value: false)
 

@@ -9,10 +9,6 @@ import UIKit
 import SwiftUI
 import RxSwift
 
-protocol UserInfoVCDelegate: AnyObject {
-    func didRequestShowProfile(for username: String)
-}
-
 enum FollowActivityType {
     case followers, followings
     var title: String {
@@ -45,15 +41,14 @@ class UserProfileViewController: DataFetchingActivityVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        userViewModel.delegate = self
         configureViewController()
         bindViewModel()
         userViewModel.getUserInfo(for: username)
-//        getUserInfo(username: username)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     func configureViewController() {
@@ -157,7 +152,6 @@ class UserProfileViewController: DataFetchingActivityVC {
 
 extension UserProfileViewController: UserInfoVCDelegate {
     func didRequestShowProfile(for username: String) {
-        dismiss(animated: true)
         userViewModel.getUserInfo(for: username)
     }
 }

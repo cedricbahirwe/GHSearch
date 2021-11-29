@@ -15,8 +15,10 @@ class FollowActivityTableViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
-        tableView.register(UITableViewCell.self,
-                           forCellReuseIdentifier: UITableViewCell.description())
+        tableView.register(HostingTableViewCell<FollowRowView>.self, forCellReuseIdentifier: String(describing: FollowerCell.self))
+//        tableView.register(FollowerCell.self, forCellReuseIdentifier: String(describing: FollowerCell.self))
+//        tableView.register(UITableViewCell.self,
+//                           forCellReuseIdentifier: UITableViewCell.description())
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -89,11 +91,13 @@ class FollowActivityTableViewController: UIViewController {
     private func tableViewBind() {
         
         viewModel.followers.bind(to: tableView.rx.items) { tableView, _, item in
-            let cell = tableView
-                .dequeueReusableCell(withIdentifier: UITableViewCell.description())
-            cell?.selectionStyle = .none
-            cell?.textLabel?.text = item.login
-            return cell ?? UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FollowerCell.self)) as! HostingTableViewCell<FollowRowView>
+            cell.host(FollowRowView(follower: item, showProfile: { follow in
+                print("Foolow", follow)
+                self.viewModel.delegate?.didRequestShowProfile(for: follow.login)
+                
+            }), parent: self)
+            return cell
         }
         .disposed(by: disposeBag)
         
@@ -114,6 +118,6 @@ class FollowActivityTableViewController: UIViewController {
 
 extension FollowActivityTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 90
     }
 }
