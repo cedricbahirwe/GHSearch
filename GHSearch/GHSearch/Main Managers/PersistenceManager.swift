@@ -22,7 +22,6 @@ enum PersistenceManager {
     
     static func retrieveBookmarks(completed: @escaping (Result<[User], GHSearchError>) -> Void) {
         retrieve(forKey: Keys.bookmarkedUsers, default: [], completion: completed)
-        retrieve(forKey: Keys.bookmarkedUsers, default: [], completion: completed)
     }
     
     static func updateBookmarks(with user: User, actionType: PersistenceOperation, completed: @escaping (GHSearchError?) -> Void) {
@@ -83,3 +82,4 @@ enum PersistenceManager {
     }
     
 }
+

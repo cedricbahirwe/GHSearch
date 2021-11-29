@@ -57,6 +57,9 @@ struct FollowsListView: View {
                     .font(.body.bold())
                 }
             }
+            .onDisappear {
+                userViewModel.followers.accept([])
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
        
@@ -66,7 +69,7 @@ struct FollowsListView: View {
         let username = userViewModel.selectedUser.value!.login
         isFetchingMoreData = true
         
-        userViewModel.getFollows(of: followType, username: username, page: page)
+        userViewModel.getFollows(typeof: followType, username: username, page: page)
     }
 }
 

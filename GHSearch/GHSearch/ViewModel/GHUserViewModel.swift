@@ -57,7 +57,7 @@ class GHUserViewModel: ObservableObject {
             .disposed(by: disposeBag)
     }
     
-    func getFollows(of followType: FollowActivityType, username: String, page: Int = 1) {
+    func getFollows(typeof followType: FollowActivityType, username: String, page: Int = 1) {
         loadInProgress.accept(true)
 
         let followRequest = followType == .followers ? apiClient.getFollowers(for: username, page: page) : apiClient.getFollowing(for: username, page: page)

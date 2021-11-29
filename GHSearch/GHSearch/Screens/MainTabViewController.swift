@@ -27,7 +27,7 @@ class MainTabViewController: UITabBarController {
     
     func createFavoritesNC() -> UINavigationController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let bookmarksListVC = storyboard.instantiateViewController(withIdentifier: String(describing: BookmarksTableVC.self)) as! BookmarksTableVC
+        let bookmarksListVC = BookmarksViewController()
         bookmarksListVC.userViewModel = userViewModel
         bookmarksListVC.title = "Bookmarks"
         bookmarksListVC.tabBarItem = UITabBarItem(title: "Bookmarks", image: UIImage(systemName: "bookmark.circle"), tag: 1)

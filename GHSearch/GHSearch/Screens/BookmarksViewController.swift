@@ -1,24 +1,29 @@
 //
-//  BookmarksTableVC.swift
+//  BookmarksViewController.swift
 //  GHSearch
 //
-//  Created by Cédric Bahirwe on 27/11/2021.
+//  Created by Cédric Bahirwe on 29/11/2021.
 //
 
 import UIKit
 
-class BookmarksTableVC: UITableViewController {
-    var userViewModel: GHUserViewModel!
-    var users: [User] = []
+class BookmarksViewController: DataFetchingActivityVC {
+    var userViewModel: GHUserViewModel?
+    
+    let bookmarksViewModel = BookmarksViewModel()
+    
+    let tableView = UITableView()
+    var bookmarkedUsers: [User] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-        configureTableViewCell()
+        configureTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        
         getBookmarkedUsers()
     }
     
@@ -28,8 +33,13 @@ class BookmarksTableVC: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    func configureTableViewCell() {
+    func configureTableView() {
+        view.addSubview(tableView)
+        
+        tableView.frame = view.bounds
         tableView.rowHeight = 80
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.register(BookmarkCell.self, forCellReuseIdentifier: String(describing: BookmarkCell.self))
     }
     
@@ -42,7 +52,7 @@ class BookmarksTableVC: UITableViewController {
                 
             case .failure(let error):
                 DispatchQueue.main.async {
-                    self.presentAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                    self.presentAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "OK")
                 }
             }
         }
@@ -52,42 +62,41 @@ class BookmarksTableVC: UITableViewController {
         if users.isEmpty {
             presentAlert(title: "Oops!", message: "You have not bookmarked any user yet!", buttonTitle: "Got it!")
         } else {
-            self.users = users
+            self.bookmarkedUsers = users
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
+}
+
+extension BookmarksViewController: UITableViewDataSource, UITableViewDelegate {
     
-    // MARK: - Table view data source
-    override func numberOfSections(in tableView: UITableView) -> Int { return 1 }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        users.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return bookmarkedUsers.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: BookmarkCell.self)) as! BookmarkCell
-        let user = users[indexPath.row]
+        let user = bookmarkedUsers[indexPath.row]
         cell.set(user: user)
-        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let user = users[indexPath.row]
-        let userProfileVC = UserProfileViewController(username: user.login, userViewModel: userViewModel)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = bookmarkedUsers[indexPath.row]
+        let userProfileVC = UserProfileViewController(username: user.login, userViewModel: userViewModel!)
         navigationController?.pushViewController(userProfileVC, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         guard editingStyle == .delete else { return }
         
-        PersistenceManager.updateBookmarks(with: users[indexPath.row], actionType: .remove) { [self] error in
+        PersistenceManager.updateBookmarks(with: bookmarkedUsers[indexPath.row], actionType: .remove) { [self] error in
             
             guard let error = error else {
-                self.users.remove(at: indexPath.row)
+                self.bookmarkedUsers.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .left)
                 return
             }

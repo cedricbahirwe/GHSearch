@@ -109,7 +109,7 @@ class UserProfileViewController: DataFetchingActivityVC {
             return
         }
         
-        userViewModel.getFollowers(username: user.login)
+        userViewModel.getFollows(typeof: .followers, username: user.login)
     }
     
     func getFollowings(for user: User) {
@@ -118,7 +118,7 @@ class UserProfileViewController: DataFetchingActivityVC {
             return
         }
         
-        userViewModel.getFollowing(username: user.login)
+        userViewModel.getFollows(typeof: .followings, username: user.login)
         
     }
     
@@ -142,14 +142,6 @@ class UserProfileViewController: DataFetchingActivityVC {
             .map({ [weak self] in
                 self?.configureUserProfileView(user: $0)
             })
-            .subscribe()
-            .disposed(by: disposeBag)
-        
-        userViewModel.following
-            .map { [weak self] followings in
-                guard !followings.isEmpty else { return }
-                self?.presentFollowSheet(for: .followings, followItems: followings)
-            }
             .subscribe()
             .disposed(by: disposeBag)
         
