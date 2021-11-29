@@ -93,7 +93,6 @@ class FollowActivityTableViewController: UIViewController {
         viewModel.followers.bind(to: tableView.rx.items) { tableView, _, item in
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FollowerCell.self)) as! HostingTableViewCell<FollowRowView>
             cell.host(FollowRowView(follower: item, showProfile: { follow in
-                print("Foolow", follow)
                 self.dismiss(animated: true)
                 self.viewModel.delegate?.didRequestShowProfile(for: follow.login)
                 

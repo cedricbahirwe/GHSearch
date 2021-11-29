@@ -24,7 +24,7 @@ class SearchViewController: UIViewController {
         super.viewWillAppear(animated)
         
         usernameTextField.applyRoundedStyle()
-        usernameTextField.text = "cedricbahirwe"
+        usernameTextField.text = ""
 
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
