@@ -19,7 +19,6 @@ class FollowActivityTableViewController: UIViewController {
                            forCellReuseIdentifier: UITableViewCell.description())
         tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableView.automaticDimension
-//        tableView.refreshControl = refreshControl
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.delegate = self
@@ -51,11 +50,11 @@ class FollowActivityTableViewController: UIViewController {
         
         layout()
         
-        tableViewBind()
+        bind()
         
         viewModel.initializeFollowList()
         
-        viewModel.fetchMoreFollowers.onNext(())
+        viewModel.fetchMoreDatas.onNext(())
         
         title =  viewModel.followType?.title ?? "XXXXX"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -81,35 +80,40 @@ class FollowActivityTableViewController: UIViewController {
         ])
     }
     
-    private func tableViewBind() {
-        viewModel.followers.bind(to: tableView.rx.items) { tableView, _, item in
-            let cell = tableView
-                .dequeueReusableCell(withIdentifier: UITableViewCell.description())
-            cell?.textLabel?.text = item.login
-            cell?.selectionStyle = .none
-            return cell ?? UITableViewCell()
-        }
-        .disposed(by: disposeBag)
-        
-        tableView.rx.didScroll.subscribe { [weak self] _ in
-            guard let self = self else { return }
-            let offSetY = self.tableView.contentOffset.y
-            let contentHeight = self.tableView.contentSize.height
-            
-            if offSetY > (contentHeight - self.tableView.frame.size.height - 20) {
-                self.viewModel.fetchMoreFollowers.onNext(())
-            }
-        }
-        .disposed(by: disposeBag)
-        
-        viewModel.showFollowersListSpinner.subscribe { [weak self] isShown in
-            guard let isAvaliable = isShown.element,
+    private func bind() {
+        tableViewBind()
+
+        viewModel.isLoadingSpinnerAvaliable.subscribe { [weak self] isAvaliable in
+            guard let isAvaliable = isAvaliable.element,
                   let self = self else { return }
             self.tableView.tableFooterView = isAvaliable ? self.viewSpinner : UIView(frame: .zero)
         }
         .disposed(by: disposeBag)
     }
     
+    private func tableViewBind() {
+
+        viewModel.followers.bind(to: tableView.rx.items) { tableView, _, item in
+            let cell = tableView
+                .dequeueReusableCell(withIdentifier: UITableViewCell.description())
+            cell?.selectionStyle = .none
+            cell?.textLabel?.text = item.login
+            self.title = self.viewModel.followType!.title + self.viewModel.followers.value.count.description
+            return cell ?? UITableViewCell()
+        }
+        .disposed(by: disposeBag)
+
+        tableView.rx.didScroll.subscribe { [weak self] _ in
+            guard let self = self else { return }
+            let offSetY = self.tableView.contentOffset.y
+            let contentHeight = self.tableView.contentSize.height
+
+            if offSetY > (contentHeight - self.tableView.frame.size.height - 20) {
+                self.viewModel.fetchMoreDatas.onNext(())
+            }
+        }
+        .disposed(by: disposeBag)
+    }
     
 }
 

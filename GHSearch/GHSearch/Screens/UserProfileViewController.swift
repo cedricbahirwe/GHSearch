@@ -30,23 +30,7 @@ class UserProfileViewController: DataFetchingActivityVC {
     
     private let disposeBag = DisposeBag()
     
-    enum Section {
-        case main
-    }
-    
     var username: String!
-//    var user: User!
-    
-    
-//    var page = 1
-//    var hasMoreFollowers = true
-//    var isSearching = false
-//    var isLoadingMoreFollowers = false
-//
-//    var collectionView: UICollectionView!
-//    var dataSource: UICollectionViewDiffableDataSource<Section, Follower>!
-
-//    var userProfileView: UserProfileView!
     
     init(username: String, userViewModel: GHUserViewModel) {
         super.init(nibName: nil, bundle: nil)
@@ -118,7 +102,8 @@ class UserProfileViewController: DataFetchingActivityVC {
     func presentFollowSheet() {
         let listVC = FollowActivityTableViewController()
         listVC.viewModel = userViewModel
-        listVC.modalPresentationStyle = .fullScreen
+        listVC.modalPresentationStyle = .fullScreen //or .overFullScreen for transparency
+//        present(listVC, animated: true, completion: nil)
         present(UINavigationController(rootViewController: listVC), animated: true)
         
     }

@@ -14,11 +14,16 @@ class GHUserViewModel: ObservableObject {
     var selectedUser = BehaviorRelay<User?>(value: nil)
     
     var followers = BehaviorRelay<[Follower]>(value: [])
-    let fetchMoreFollowers = PublishSubject<Void>()
-    let showFollowersListSpinner = PublishSubject<Bool>()
+//    let fetchMoreFollowers = PublishSubject<Void>()
+//    let showFollowersListSpinner = PublishSubject<Bool>()
     var followType: FollowActivityType? = nil
-    private var pageCounter = 1
+//    private var pageCounter = 1
     var hasMoreFollowers = true
+    let fetchMoreDatas = PublishSubject<Void>()
+    let isLoadingSpinnerAvaliable = PublishSubject<Bool>()
+
+    private var pageCounter = 1
+    private var isPaginationRequestStillResume = false
     
     let onShowError = PublishSubject<GHSearchError>()
     
@@ -40,7 +45,7 @@ class GHUserViewModel: ObservableObject {
     
     
     private func bind() {
-        fetchMoreFollowers.subscribe { [weak self] _ in
+        fetchMoreDatas.subscribe { [weak self] _ in
             guard let self = self,
                   let user = self.selectedUser.value,
                   let followType = self.followType else { return }
@@ -75,21 +80,27 @@ class GHUserViewModel: ObservableObject {
     
     func getFollows(typeof followType: FollowActivityType, username: String, page: Int = 1) {
         self.followType = followType
-        guard hasMoreFollowers, !loadInProgress.value else { return }
         
-        showFollowersListSpinner.onNext(true)
+        if isPaginationRequestStillResume { return }
         
-        if page == 1 {
-            showFollowersListSpinner.onNext(false)
+        if hasMoreFollowers == false {
+            isPaginationRequestStillResume = false
+            return
         }
-        pageCounter += 1
-
+       
+        isPaginationRequestStillResume = true
+        isLoadingSpinnerAvaliable.onNext(true)
+        
+        if pageCounter == 1 {
+            isLoadingSpinnerAvaliable.onNext(false)
+        }
+        
+        
         let followRequest = followType == .followers ? apiClient.getFollowers(for: username, page: page) : apiClient.getFollowing(for: username, page: page)
         
         followRequest
             .subscribe(
                 onNext: { [weak self] newFollowers in
-                    self?.showFollowersListSpinner.onNext(false)
                     if page == 1 {
                         self?.followers.accept(newFollowers)
                     } else {
@@ -101,11 +112,14 @@ class GHUserViewModel: ObservableObject {
                         self?.hasMoreFollowers = false
                     }
                     
+                    self?.isLoadingSpinnerAvaliable.onNext(false)
+                    self?.isPaginationRequestStillResume = false
                     
+                    self?.pageCounter += 1
                 },
                 onError: { [weak self] error in
-                    self?.showFollowersListSpinner.onNext(false)
-                    print("Never response")
+                    self?.isLoadingSpinnerAvaliable.onNext(false)
+                    self?.isPaginationRequestStillResume = false
                     self?.onShowError.onNext((error as? GHSearchError ?? GHSearchError.invalidResponse))
                 }
             )
@@ -116,8 +130,6 @@ class GHUserViewModel: ObservableObject {
         followers.accept([])
         pageCounter = 1
         hasMoreFollowers = true
-        
-        print("Empting")
     }
     
 }

@@ -60,7 +60,7 @@ class NetworkingManager {
     
     func getFollowing(for username: String, page: Int) -> Observable<[Follower]> {
         return Observable.create { observer -> Disposable in
-            AF.request(self.baseUrl + "\(username)/followers?per_page=10&page=\(page)")
+            AF.request(self.baseUrl + "\(username)/following?per_page=10&page=\(page)")
                 .validate()
                 .responseData { response in
                     switch response.result {
