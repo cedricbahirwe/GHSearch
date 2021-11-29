@@ -12,7 +12,7 @@ class MainTabViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewControllers = [createSearchVC(), createFavoritesNC()]
+        viewControllers = [createSearchVC(), createBookmarksVC()]
     }
     
     func createSearchVC() -> UINavigationController {
@@ -25,8 +25,7 @@ class MainTabViewController: UITabBarController {
         return UINavigationController(rootViewController: searchVC)
     }
     
-    func createFavoritesNC() -> UINavigationController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    func createBookmarksVC() -> UINavigationController {
         let bookmarksListVC = BookmarksViewController()
         bookmarksListVC.userViewModel = userViewModel
         bookmarksListVC.title = "Bookmarks"

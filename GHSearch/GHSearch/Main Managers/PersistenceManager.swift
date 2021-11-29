@@ -80,6 +80,4 @@ enum PersistenceManager {
             completion(.failure(.invalidData))
         }
     }
-    
 }
-

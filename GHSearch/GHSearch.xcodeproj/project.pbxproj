@@ -49,7 +49,6 @@
 		823F4F26275241FA0038EA89 /* FollowActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */; };
 		823F4F282752448D0038EA89 /* FollowsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F272752448D0038EA89 /* FollowsListView.swift */; };
 		823F4F2A275251CA0038EA89 /* DataFetchingActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */; };
-		823F4F2C27525B100038EA89 /* BookmarksTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F2B27525B100038EA89 /* BookmarksTableVC.swift */; };
 		823F4F2E2752697D0038EA89 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F2D2752697D0038EA89 /* UIView+Extension.swift */; };
 		823F4F33275272E90038EA89 /* GHAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F32275272E90038EA89 /* GHAvatarView.swift */; };
 		823F4F37275273100038EA89 /* UserInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F362752730F0038EA89 /* UserInfoSectionView.swift */; };
@@ -113,7 +112,6 @@
 		823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowActivityTableViewController.swift; sourceTree = "<group>"; };
 		823F4F272752448D0038EA89 /* FollowsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsListView.swift; sourceTree = "<group>"; };
 		823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchingActivityVC.swift; sourceTree = "<group>"; };
-		823F4F2B27525B100038EA89 /* BookmarksTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableVC.swift; sourceTree = "<group>"; };
 		823F4F2D2752697D0038EA89 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		823F4F32275272E90038EA89 /* GHAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHAvatarView.swift; sourceTree = "<group>"; };
 		823F4F362752730F0038EA89 /* UserInfoSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSectionView.swift; sourceTree = "<group>"; };
@@ -218,7 +216,6 @@
 				8204C2D12750C51600EB9BFB /* SearchViewController.swift */,
 				8204C2DB2750D51700EB9BFB /* UserProfileView.swift */,
 				823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */,
-				823F4F2B27525B100038EA89 /* BookmarksTableVC.swift */,
 				823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */,
 				823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */,
 			);
@@ -490,7 +487,6 @@
 				821C5C7A27539AEF003643C5 /* BookmarksViewModel.swift in Sources */,
 				8204C2BB2750111000EB9BFB /* GHSearchError.swift in Sources */,
 				823F4F37275273100038EA89 /* UserInfoSectionView.swift in Sources */,
-				823F4F2C27525B100038EA89 /* BookmarksTableVC.swift in Sources */,
 				823F4F33275272E90038EA89 /* GHAvatarView.swift in Sources */,
 				8204C2B327500FF100EB9BFB /* Constants.swift in Sources */,
 				8204C2DE2750D78C00EB9BFB /* GHAvatarImageView.swift in Sources */,

@@ -10,10 +10,8 @@ import UIKit
 class BookmarksViewController: DataFetchingActivityVC {
     var userViewModel: GHUserViewModel?
     
-    let bookmarksViewModel = BookmarksViewModel()
-    
-    let tableView = UITableView()
-    var bookmarkedUsers: [User] = []
+    private let tableView = UITableView()
+    private var bookmarkedUsers: [User] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
