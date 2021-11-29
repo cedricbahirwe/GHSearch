@@ -16,24 +16,24 @@ protocol UserInfoVCDelegate: AnyObject {
     func didRequestShowProfile(for username: String)
 }
 
+enum FollowActivityType {
+    case followers, followings
+    var title: String {
+        switch self {
+        case .followers:
+            return "Followers"
+        case .followings:
+            return "Followings"
+        }
+    }
+}
+
 class UserProfileViewController: DataFetchingActivityVC {
     var userViewModel: GHUserViewModel! // = GHUserViewModel()
     
     private let disposeBag = DisposeBag()
     
     private var selectUser = ReadOnce<User>(nil)
-    
-    enum FollowActivityType {
-        case follower, following
-        var title: String {
-            switch self {
-            case .follower:
-                return "Followers"
-            case .following:
-                return "Followings"
-            }
-        }
-    }
     
     enum Section {
         case main
@@ -103,23 +103,13 @@ class UserProfileViewController: DataFetchingActivityVC {
     }
     
     func getFollowers(for user: User) {
+        print("Damn")
         guard user.followers > 0 else {
             presentAlert(title: "Oops, No Followers.", message: "This user has no followers🤷🏽‍♂️.", buttonTitle: "Okay")
             return
         }
-        Task {
-            do {
-                let followers = try await NetworkingManager.shared.getFollowers(for: user.login, page: 1)
-                presentFollowSheet(for: .follower, followItems: followers)
-            } catch {
-                print("There is a error: ", error.localizedDescription)
-                if let ghError = error as? GHSearchError {
-                    presentAlert(title: "Something went wrong", message: ghError.rawValue, buttonTitle: "OK") {
-                        self.dismiss(animated: true)
-                    }
-                }
-            }
-        }
+        
+        userViewModel.getFollowers(username: user.login)
     }
     
     func getFollowings(for user: User) {
@@ -128,17 +118,7 @@ class UserProfileViewController: DataFetchingActivityVC {
             return
         }
         
-        Task {
-            do {
-                let followings = try await NetworkingManager.shared.getFollowings(for: user.login, page: 1)
-                presentFollowSheet(for: .following, followItems: followings)
-            } catch {
-                print("There is a error: ", error.localizedDescription)
-                if let ghError = error as? GHSearchError {
-                    presentAlert(title: "Something went wrong", message: ghError.rawValue, buttonTitle: "OK")
-                }
-            }
-        }
+        userViewModel.getFollowing(username: user.login)
         
     }
     
@@ -148,36 +128,13 @@ class UserProfileViewController: DataFetchingActivityVC {
             presentAlert(title: "Oops, No \(followType.title)!!!", message: "This user has no \(followType.title)🤷🏽‍♂️.", buttonTitle: "Alright😟")
             return
         }
-        let listView =  SampleListView(username: userViewModel.selectedUser.value!.login, title: followType.title, followers: followItems, delegate: self)
+        
+        let listView = FollowsListView(userViewModel: userViewModel, followType: followType, delegate: self)
         let listVC = UIHostingController(rootView: listView)
 
         present(listVC, animated: true)
         
     }
-    
-//    func getUserInfo(username: String) {
-//
-//        startLoadingActivityView()
-//
-//        Task {
-//            do {
-//                let user = try await NetworkingManager.shared.getUserInfo(for: username)
-//                self.user = user
-//                configureUserProfileView(user: user)
-//                stopLoadingActivityView()
-//
-//            } catch {
-//                if let ghError = error as? GHSearchError {
-//                    presentAlert(title: "Something went wrong", message: ghError.rawValue, buttonTitle: "OK") {
-//                        self.navigationController?.popViewController(animated: true)
-//                    }
-//                } else {
-//                    presentUnknownError()
-//                }
-//                stopLoadingActivityView()
-//            }
-//        }
-//    }
     
     func bindViewModel() {
         userViewModel.selectedUser
@@ -185,6 +142,22 @@ class UserProfileViewController: DataFetchingActivityVC {
             .map({ [weak self] in
                 self?.configureUserProfileView(user: $0)
             })
+            .subscribe()
+            .disposed(by: disposeBag)
+        
+        userViewModel.following
+            .map { [weak self] followings in
+                guard !followings.isEmpty else { return }
+                self?.presentFollowSheet(for: .followings, followItems: followings)
+            }
+            .subscribe()
+            .disposed(by: disposeBag)
+        
+        userViewModel.followers
+            .map { [weak self] followers in
+                guard !followers.isEmpty else { return }
+                self?.presentFollowSheet(for: .followers, followItems: followers)
+            }
             .subscribe()
             .disposed(by: disposeBag)
 

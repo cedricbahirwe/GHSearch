@@ -45,7 +45,7 @@
 		821C5C782752A7AA003643C5 /* ReadOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C772752A7AA003643C5 /* ReadOnce.swift */; };
 		821C5C7A27539AEF003643C5 /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */; };
 		823F4F26275241FA0038EA89 /* FollowActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */; };
-		823F4F282752448D0038EA89 /* SampleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F272752448D0038EA89 /* SampleListView.swift */; };
+		823F4F282752448D0038EA89 /* FollowsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F272752448D0038EA89 /* FollowsListView.swift */; };
 		823F4F2A275251CA0038EA89 /* DataFetchingActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */; };
 		823F4F2C27525B100038EA89 /* BookmarksTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F2B27525B100038EA89 /* BookmarksTableVC.swift */; };
 		823F4F2E2752697D0038EA89 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F2D2752697D0038EA89 /* UIView+Extension.swift */; };
@@ -107,7 +107,7 @@
 		821C5C772752A7AA003643C5 /* ReadOnce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadOnce.swift; sourceTree = "<group>"; };
 		821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 		823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowActivityTableViewController.swift; sourceTree = "<group>"; };
-		823F4F272752448D0038EA89 /* SampleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleListView.swift; sourceTree = "<group>"; };
+		823F4F272752448D0038EA89 /* FollowsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowsListView.swift; sourceTree = "<group>"; };
 		823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchingActivityVC.swift; sourceTree = "<group>"; };
 		823F4F2B27525B100038EA89 /* BookmarksTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksTableVC.swift; sourceTree = "<group>"; };
 		823F4F2D2752697D0038EA89 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 				8204C27C27500B9E00EB9BFB /* AppDelegate.swift */,
 				8204C27E27500B9E00EB9BFB /* SceneDelegate.swift */,
 				8204C28027500B9E00EB9BFB /* ViewController.swift */,
-				823F4F272752448D0038EA89 /* SampleListView.swift */,
+				823F4F272752448D0038EA89 /* FollowsListView.swift */,
 				821C5C5F27528313003643C5 /* ViewModel */,
 				8204C2AD27500D3100EB9BFB /* Model */,
 				8204C2B027500D6400EB9BFB /* Custom Reusable Views */,
@@ -461,7 +461,7 @@
 				8204C27F27500B9E00EB9BFB /* SceneDelegate.swift in Sources */,
 				8204C2B9275010F000EB9BFB /* PersistenceManager.swift in Sources */,
 				821C5C6127528323003643C5 /* GHUserViewModel.swift in Sources */,
-				823F4F282752448D0038EA89 /* SampleListView.swift in Sources */,
+				823F4F282752448D0038EA89 /* FollowsListView.swift in Sources */,
 				821C5C782752A7AA003643C5 /* ReadOnce.swift in Sources */,
 				8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */,
 				823F4F2E2752697D0038EA89 /* UIView+Extension.swift in Sources */,

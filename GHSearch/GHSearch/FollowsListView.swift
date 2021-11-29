@@ -8,13 +8,14 @@
 import SwiftUI
 import RxCocoa
 
-struct SampleListView: View {
+struct FollowsListView: View {
     @Environment(\.dismiss)
     private var dismiss
     
-    var username: String
-    let title: String
-   @State var followers: [Follower]
+    @ObservedObject var userViewModel: GHUserViewModel
+    var followType: FollowActivityType
+//    let username: String
+//   @State var followers: [Follower]
     var delegate: UserInfoVCDelegate!
 //    var onShowProfile: (Follower) -> Void
     
@@ -27,7 +28,7 @@ struct SampleListView: View {
         NavigationView {
             List {
                 
-                ForEach(followers) { follower in
+                ForEach(userViewModel.followers.value) { follower in
                     FollowRowView(follower: follower) { follower in
                         delegate.didRequestShowProfile(for: follower.login)
                     }
@@ -47,7 +48,7 @@ struct SampleListView: View {
                         }
                 }
             }
-            .navigationBarTitle("\(title) \(followers.count)")
+            .navigationBarTitle("\(followType.title) \(userViewModel.followers.value.count)")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
@@ -62,28 +63,17 @@ struct SampleListView: View {
     }
     
     private func requestFollowers() {
-        Task {
-            isFetchingMoreData = true
-            let followers = try await NetworkingManager.shared.getFollowings(for: username, page: page)
-            print("Got ", followers.count)
-            isFetchingMoreData  = false
-            if followers.count < 10 { hasMoreData = false }
-            self.followers.append(contentsOf: followers)
-            
-            if self.followers.isEmpty {
-                let message = "This user doesn't have any followers. Go follow them 😀."
-                print(message)
-                //            DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
-                return
-            }
-            
-        }
+        let username = userViewModel.selectedUser.value!.login
+        isFetchingMoreData = true
+        
+        userViewModel.getFollows(of: followType, username: username, page: page)
     }
 }
 
 struct SampleListView_Previews: PreviewProvider {
     static var previews: some View {
-        SampleListView(username: "Username", title: "Follows", followers: []) //{ _ in }
+        FollowsListView(userViewModel: GHUserViewModel(),
+                        followType: .followers, delegate: nil)
     }
 }
 

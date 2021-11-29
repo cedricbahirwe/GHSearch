@@ -9,8 +9,18 @@ import UIKit
 import RxSwift
 import Alamofire
 
-// A singleton class for networking
+
 class NetworkingManager {
+    
+    struct NetworkAlert {
+        init(_ title: String = "Oops!!", message: String) {
+            self.title = title
+            self.message = message
+        }
+        
+        let title: String
+        let message: String
+    }
     
     static let shared = NetworkingManager()
     public let cache = NSCache<NSString, UIImage>()
@@ -23,59 +33,53 @@ class NetworkingManager {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
-    
-    func getFollowers(for username: String, page: Int) async throws -> [Follower] {
-        let endpoint = baseUrl + "\(username)/followers?per_page=10&page=\(page)"
-        
-        guard let url = URL(string: endpoint) else {
-            throw GHSearchError.invalidUsername
-        }
-        
-        let (data, response) = try await URLSession.shared.data(from: url)
-        
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw GHSearchError.invalidResponse
-        }
-        
-        do {
-            return try decoder.decode([Follower].self, from: data)
-        } catch {
-            throw GHSearchError.invalidData
-        }
-    }
-    
-    func getFollowings(for username: String, page: Int) async throws -> [Follower] {
-        let endpoint = baseUrl + "\(username)/following?per_page=10&page=\(page)"
-        
-        guard let url = URL(string: endpoint) else {
-            throw GHSearchError.invalidUsername
-        }
-        
-        let (data, response) = try await URLSession.shared.data(from: url)
-        
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw GHSearchError.invalidResponse
-        }
-        
-        do {
-            return try decoder.decode([Follower].self, from: data)
-        } catch {
-            throw GHSearchError.invalidData
+    func getFollowers(for username: String, page: Int) -> Observable<[Follower]> {
+        return Observable.create { observer -> Disposable in
+            AF.request(self.baseUrl + "\(username)/followers?per_page=10&page=\(page)")
+                .validate()
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        guard let data = response.data else {
+                            observer.onError(response.error ?? GHSearchError.notFound)
+                            return
+                        }
+                        do {
+                            let friend = try self.decoder.decode([Follower].self, from: data)
+                            observer.onNext(friend)
+                        } catch {
+                            observer.onError(error)
+                        }
+                    case .failure(let error):
+                        observer.onError(error)
+                    }
+                }
+            return Disposables.create()
         }
     }
     
-    func getUserInfo(for username: String) async throws -> User {
-        let endpoint = baseUrl + "\(username)"
-        guard let url = URL(string: endpoint) else { throw GHSearchError.invalidUsername }
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw GHSearchError.invalidResponse }
-//        if let json =  try? JSONSerialization.jsonObject(with: data, options: []) {
-//            print("JSon", json)
-//        }
-        do {
-            return try decoder.decode(User.self, from: data)
-        } catch {
-            throw GHSearchError.invalidData
+    func getFollowing(for username: String, page: Int) -> Observable<[Follower]> {
+        return Observable.create { observer -> Disposable in
+            AF.request(self.baseUrl + "\(username)/followers?per_page=10&page=\(page)")
+                .validate()
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        guard let data = response.data else {
+                            observer.onError(response.error ?? GHSearchError.notFound)
+                            return
+                        }
+                        do {
+                            let following = try self.decoder.decode([Follower].self, from: data)
+                            observer.onNext(following)
+                        } catch {
+                            observer.onError(error)
+                        }
+                    case .failure(let error):
+                        observer.onError(error)
+                    }
+                }
+            return Disposables.create()
         }
     }
     
@@ -122,6 +126,30 @@ class NetworkingManager {
     }
     
     
+    func getResource<T: Decodable>(url: String) -> Observable<T> {
+        return Observable.create { observer -> Disposable in
+            AF.request(url)
+                .validate()
+                .responseData { response in
+                    switch response.result {
+                    case .success:
+                        guard let data = response.data else {
+                            observer.onError(response.error ?? GHSearchError.notFound)
+                            return
+                        }
+                        do {
+                            let result = try self.decoder.decode(T.self, from: data)
+                            observer.onNext(result)
+                        } catch {
+                            observer.onError(error)
+                        }
+                    case .failure(let error):
+                        observer.onError(error)
+                    }
+                }
+            return Disposables.create()
+        }
+    }
     
     
 }

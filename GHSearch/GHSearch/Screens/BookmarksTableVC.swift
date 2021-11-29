@@ -168,7 +168,10 @@ class BookmarkCell: UITableViewCell {
     }
 }
 
-class FavoritesListVC: DataFetchingActivityVC {
+class FollowListViewController: DataFetchingActivityVC {
+    var userViewModel: GHUserViewModel?
+    
+    let bookmarksViewModel = BookmarksViewModel()
     
     let tableView = UITableView()
     var bookmarkedUsers: [User] = []
@@ -181,7 +184,8 @@ class FavoritesListVC: DataFetchingActivityVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getFavorites()
+        
+        bookmarksViewModel.getBookmarkedUsers()
     }
     
     func configureViewController() {
@@ -202,22 +206,6 @@ class FavoritesListVC: DataFetchingActivityVC {
         tableView.register(BookmarkCell.self, forCellReuseIdentifier: String(describing: BookmarkCell.self))
     }
     
-    func getFavorites() {
-        PersistenceManager.retrieveBookmarks { [weak self] result in
-            guard let self = self else { return }
-            
-            switch result {
-            case .success(let users):
-                self.updateUILayout(with: users)
-                
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.presentAlert(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-                }
-            }
-        }
-    }
-    
     func updateUILayout(with users: [User]) {
         if users.isEmpty {
             presentAlert(title: "Oops!", message: "You have not bookmarked any user yet!", buttonTitle: "Got it!")
@@ -230,7 +218,7 @@ class FavoritesListVC: DataFetchingActivityVC {
     }
 }
 
-extension FavoritesListVC: UITableViewDataSource, UITableViewDelegate {
+extension FollowListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bookmarkedUsers.count
