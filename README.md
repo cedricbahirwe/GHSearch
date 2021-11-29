@@ -3,7 +3,8 @@ Search for a user profile on Github
 
 ## This project :
 
-- requires `iOS 15+` 
+- requires `iOS 15+`
+- utilize Github API
 - uses `RxSwift` where it fits
 - uses `Alamofire` for networking
 - uses both `UIKit` and `SwiftUI`
