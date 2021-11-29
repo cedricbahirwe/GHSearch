@@ -16,6 +16,43 @@
 		8204C29427500BA200EB9BFB /* GHSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C29327500BA200EB9BFB /* GHSearchTests.swift */; };
 		8204C29E27500BA200EB9BFB /* GHSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C29D27500BA200EB9BFB /* GHSearchUITests.swift */; };
 		8204C2A027500BA200EB9BFB /* GHSearchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C29F27500BA200EB9BFB /* GHSearchUITestsLaunchTests.swift */; };
+		8204C2B327500FF100EB9BFB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2B227500FF100EB9BFB /* Constants.swift */; };
+		8204C2B9275010F000EB9BFB /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2B8275010F000EB9BFB /* PersistenceManager.swift */; };
+		8204C2BB2750111000EB9BFB /* GHSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BA2750111000EB9BFB /* GHSearchError.swift */; };
+		8204C2BD2750113800EB9BFB /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BC2750113800EB9BFB /* NetworkingManager.swift */; };
+		8204C2BF2750129400EB9BFB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BE2750129400EB9BFB /* User.swift */; };
+		8204C2C12750129E00EB9BFB /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2C02750129E00EB9BFB /* Follower.swift */; };
+		8204C2C427501EFF00EB9BFB /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8204C2C327501EFF00EB9BFB /* RxCocoa */; };
+		8204C2C627501EFF00EB9BFB /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8204C2C527501EFF00EB9BFB /* RxSwift */; };
+		8204C2CA2750BAB300EB9BFB /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2C92750BAB300EB9BFB /* MainTabViewController.swift */; };
+		8204C2D22750C51600EB9BFB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2D12750C51600EB9BFB /* SearchViewController.swift */; };
+		8204C2D42750C65D00EB9BFB /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2D32750C65D00EB9BFB /* UserProfileViewController.swift */; };
+		8204C2D62750C6CF00EB9BFB /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2D52750C6CF00EB9BFB /* UIViewController+Extension.swift */; };
+		8204C2DA2750D2F800EB9BFB /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2D92750D2F800EB9BFB /* UITextField+Extension.swift */; };
+		8204C2DC2750D51700EB9BFB /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DB2750D51700EB9BFB /* UserProfileView.swift */; };
+		8204C2DE2750D78C00EB9BFB /* GHAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */; };
+		8204C2E02750EB8A00EB9BFB /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */; };
+		8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2E12751105000EB9BFB /* AlertItem.swift */; };
+		821C5C6127528323003643C5 /* GHUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C6027528323003643C5 /* GHUserViewModel.swift */; };
+		821C5C662752845A003643C5 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C652752845A003643C5 /* UserTests.swift */; };
+		821C5C6727528587003643C5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BE2750129400EB9BFB /* User.swift */; };
+		821C5C682752858B003643C5 /* Follower.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2C02750129E00EB9BFB /* Follower.swift */; };
+		821C5C6C27528ADD003643C5 /* MockUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C6B27528ADD003643C5 /* MockUser.swift */; };
+		821C5C7127528D96003643C5 /* GHUserViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */; };
+		821C5C722752972E003643C5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BC2750113800EB9BFB /* NetworkingManager.swift */; };
+		821C5C732752976D003643C5 /* GHSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BA2750111000EB9BFB /* GHSearchError.swift */; };
+		821C5C762752A287003643C5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 821C5C752752A287003643C5 /* Alamofire */; };
+		821C5C7A27539AEF003643C5 /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */; };
+		823D7EE52754A6530091D2B2 /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE42754A6530091D2B2 /* BookmarkCell.swift */; };
+		823D7EE72754C1650091D2B2 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */; };
+		823D7EEE2754F2000091D2B2 /* FollowRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EED2754F2000091D2B2 /* FollowRowView.swift */; };
+		823D7EF02754FC4D0091D2B2 /* HostingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EEF2754FC4D0091D2B2 /* HostingTableViewCell.swift */; };
+		823F4F26275241FA0038EA89 /* FollowActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */; };
+		823F4F2A275251CA0038EA89 /* DataFetchingActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */; };
+		823F4F2E2752697D0038EA89 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F2D2752697D0038EA89 /* UIView+Extension.swift */; };
+		823F4F33275272E90038EA89 /* GHAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F32275272E90038EA89 /* GHAvatarView.swift */; };
+		823F4F37275273100038EA89 /* UserInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F362752730F0038EA89 /* UserInfoSectionView.swift */; };
+		823F4F39275273790038EA89 /* LocationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F38275273790038EA89 /* LocationLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +86,36 @@
 		8204C29927500BA200EB9BFB /* GHSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GHSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8204C29D27500BA200EB9BFB /* GHSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHSearchUITests.swift; sourceTree = "<group>"; };
 		8204C29F27500BA200EB9BFB /* GHSearchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHSearchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8204C2B227500FF100EB9BFB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8204C2B8275010F000EB9BFB /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
+		8204C2BA2750111000EB9BFB /* GHSearchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHSearchError.swift; sourceTree = "<group>"; };
+		8204C2BC2750113800EB9BFB /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
+		8204C2BE2750129400EB9BFB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8204C2C02750129E00EB9BFB /* Follower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Follower.swift; sourceTree = "<group>"; };
+		8204C2C92750BAB300EB9BFB /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		8204C2D12750C51600EB9BFB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		8204C2D32750C65D00EB9BFB /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		8204C2D52750C6CF00EB9BFB /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		8204C2D92750D2F800EB9BFB /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		8204C2DB2750D51700EB9BFB /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHAvatarImageView.swift; sourceTree = "<group>"; };
+		8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		8204C2E12751105000EB9BFB /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
+		821C5C6027528323003643C5 /* GHUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUserViewModel.swift; sourceTree = "<group>"; };
+		821C5C652752845A003643C5 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		821C5C6B27528ADD003643C5 /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
+		821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUserViewModelTests.swift; sourceTree = "<group>"; };
+		821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
+		823D7EE42754A6530091D2B2 /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
+		823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
+		823D7EED2754F2000091D2B2 /* FollowRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRowView.swift; sourceTree = "<group>"; };
+		823D7EEF2754FC4D0091D2B2 /* HostingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingTableViewCell.swift; sourceTree = "<group>"; };
+		823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowActivityTableViewController.swift; sourceTree = "<group>"; };
+		823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchingActivityVC.swift; sourceTree = "<group>"; };
+		823F4F2D2752697D0038EA89 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		823F4F32275272E90038EA89 /* GHAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHAvatarView.swift; sourceTree = "<group>"; };
+		823F4F362752730F0038EA89 /* UserInfoSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoSectionView.swift; sourceTree = "<group>"; };
+		823F4F38275273790038EA89 /* LocationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +123,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821C5C762752A287003643C5 /* Alamofire in Frameworks */,
+				8204C2C627501EFF00EB9BFB /* RxSwift in Frameworks */,
+				8204C2C427501EFF00EB9BFB /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +172,13 @@
 				8204C27C27500B9E00EB9BFB /* AppDelegate.swift */,
 				8204C27E27500B9E00EB9BFB /* SceneDelegate.swift */,
 				8204C28027500B9E00EB9BFB /* ViewController.swift */,
+				821C5C5F27528313003643C5 /* ViewModel */,
+				8204C2AD27500D3100EB9BFB /* Model */,
+				8204C2B027500D6400EB9BFB /* Custom Reusable Views */,
 				8204C2AC27500BAC00EB9BFB /* Screens */,
+				8204C2AF27500D5900EB9BFB /* Main Managers */,
+				8204C2B127500D7700EB9BFB /* Utilities */,
+				8204C2AE27500D4300EB9BFB /* Extensions */,
 				8204C28227500B9E00EB9BFB /* Main.storyboard */,
 				8204C28527500BA100EB9BFB /* Assets.xcassets */,
 				8204C28727500BA100EB9BFB /* LaunchScreen.storyboard */,
@@ -115,6 +191,9 @@
 			isa = PBXGroup;
 			children = (
 				8204C29327500BA200EB9BFB /* GHSearchTests.swift */,
+				821C5C6D27528CE8003643C5 /* ViewModel */,
+				821C5C6A27528AC6003643C5 /* Mockup */,
+				821C5C622752843A003643C5 /* Model */,
 			);
 			path = GHSearchTests;
 			sourceTree = "<group>";
@@ -131,8 +210,117 @@
 		8204C2AC27500BAC00EB9BFB /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8204C2C92750BAB300EB9BFB /* MainTabViewController.swift */,
+				8204C2D12750C51600EB9BFB /* SearchViewController.swift */,
+				8204C2D32750C65D00EB9BFB /* UserProfileViewController.swift */,
+				823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */,
+				823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */,
+				823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		8204C2AD27500D3100EB9BFB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8204C2BE2750129400EB9BFB /* User.swift */,
+				8204C2C02750129E00EB9BFB /* Follower.swift */,
+				8204C2E12751105000EB9BFB /* AlertItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8204C2AE27500D4300EB9BFB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8204C2D52750C6CF00EB9BFB /* UIViewController+Extension.swift */,
+				8204C2D92750D2F800EB9BFB /* UITextField+Extension.swift */,
+				8204C2DF2750EB8A00EB9BFB /* Date+Extension.swift */,
+				823F4F2D2752697D0038EA89 /* UIView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8204C2AF27500D5900EB9BFB /* Main Managers */ = {
+			isa = PBXGroup;
+			children = (
+				8204C2B8275010F000EB9BFB /* PersistenceManager.swift */,
+				8204C2BC2750113800EB9BFB /* NetworkingManager.swift */,
+			);
+			path = "Main Managers";
+			sourceTree = "<group>";
+		};
+		8204C2B027500D6400EB9BFB /* Custom Reusable Views */ = {
+			isa = PBXGroup;
+			children = (
+				8204C2DD2750D78C00EB9BFB /* GHAvatarImageView.swift */,
+				823D7EE32754A63E0091D2B2 /* Cells */,
+				823F4F2F275272B60038EA89 /* SwiftUI */,
+			);
+			path = "Custom Reusable Views";
+			sourceTree = "<group>";
+		};
+		8204C2B127500D7700EB9BFB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8204C2B227500FF100EB9BFB /* Constants.swift */,
+				8204C2BA2750111000EB9BFB /* GHSearchError.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		821C5C5F27528313003643C5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				821C5C6027528323003643C5 /* GHUserViewModel.swift */,
+				821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		821C5C622752843A003643C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				821C5C652752845A003643C5 /* UserTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		821C5C6A27528AC6003643C5 /* Mockup */ = {
+			isa = PBXGroup;
+			children = (
+				821C5C6B27528ADD003643C5 /* MockUser.swift */,
+			);
+			path = Mockup;
+			sourceTree = "<group>";
+		};
+		821C5C6D27528CE8003643C5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		823D7EE32754A63E0091D2B2 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				823D7EE42754A6530091D2B2 /* BookmarkCell.swift */,
+				823D7EEF2754FC4D0091D2B2 /* HostingTableViewCell.swift */,
+				823D7EED2754F2000091D2B2 /* FollowRowView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		823F4F2F275272B60038EA89 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				823F4F38275273790038EA89 /* LocationLabel.swift */,
+				823F4F32275272E90038EA89 /* GHAvatarView.swift */,
+				823F4F362752730F0038EA89 /* UserInfoSectionView.swift */,
+				8204C2DB2750D51700EB9BFB /* UserProfileView.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +339,11 @@
 			dependencies = (
 			);
 			name = GHSearch;
+			packageProductDependencies = (
+				8204C2C327501EFF00EB9BFB /* RxCocoa */,
+				8204C2C527501EFF00EB9BFB /* RxSwift */,
+				821C5C752752A287003643C5 /* Alamofire */,
+			);
 			productName = GHSearch;
 			productReference = 8204C27927500B9E00EB9BFB /* GHSearch.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +416,10 @@
 				Base,
 			);
 			mainGroup = 8204C27027500B9E00EB9BFB;
+			packageReferences = (
+				8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */,
+				821C5C742752A286003643C5 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 8204C27A27500B9E00EB9BFB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -266,9 +463,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8204C2DA2750D2F800EB9BFB /* UITextField+Extension.swift in Sources */,
 				8204C28127500B9E00EB9BFB /* ViewController.swift in Sources */,
+				8204C2D62750C6CF00EB9BFB /* UIViewController+Extension.swift in Sources */,
+				8204C2C12750129E00EB9BFB /* Follower.swift in Sources */,
+				823F4F26275241FA0038EA89 /* FollowActivityTableViewController.swift in Sources */,
+				823D7EE52754A6530091D2B2 /* BookmarkCell.swift in Sources */,
 				8204C27D27500B9E00EB9BFB /* AppDelegate.swift in Sources */,
 				8204C27F27500B9E00EB9BFB /* SceneDelegate.swift in Sources */,
+				8204C2B9275010F000EB9BFB /* PersistenceManager.swift in Sources */,
+				821C5C6127528323003643C5 /* GHUserViewModel.swift in Sources */,
+				823D7EE72754C1650091D2B2 /* BookmarksViewController.swift in Sources */,
+				8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */,
+				823D7EF02754FC4D0091D2B2 /* HostingTableViewCell.swift in Sources */,
+				823F4F2E2752697D0038EA89 /* UIView+Extension.swift in Sources */,
+				823D7EEE2754F2000091D2B2 /* FollowRowView.swift in Sources */,
+				8204C2D22750C51600EB9BFB /* SearchViewController.swift in Sources */,
+				8204C2CA2750BAB300EB9BFB /* MainTabViewController.swift in Sources */,
+				8204C2E02750EB8A00EB9BFB /* Date+Extension.swift in Sources */,
+				8204C2D42750C65D00EB9BFB /* UserProfileViewController.swift in Sources */,
+				8204C2DC2750D51700EB9BFB /* UserProfileView.swift in Sources */,
+				8204C2BF2750129400EB9BFB /* User.swift in Sources */,
+				821C5C7A27539AEF003643C5 /* BookmarksViewModel.swift in Sources */,
+				8204C2BB2750111000EB9BFB /* GHSearchError.swift in Sources */,
+				823F4F37275273100038EA89 /* UserInfoSectionView.swift in Sources */,
+				823F4F33275272E90038EA89 /* GHAvatarView.swift in Sources */,
+				8204C2B327500FF100EB9BFB /* Constants.swift in Sources */,
+				8204C2DE2750D78C00EB9BFB /* GHAvatarImageView.swift in Sources */,
+				823F4F39275273790038EA89 /* LocationLabel.swift in Sources */,
+				8204C2BD2750113800EB9BFB /* NetworkingManager.swift in Sources */,
+				823F4F2A275251CA0038EA89 /* DataFetchingActivityVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,7 +500,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821C5C6C27528ADD003643C5 /* MockUser.swift in Sources */,
+				821C5C662752845A003643C5 /* UserTests.swift in Sources */,
+				821C5C7127528D96003643C5 /* GHUserViewModelTests.swift in Sources */,
 				8204C29427500BA200EB9BFB /* GHSearchTests.swift in Sources */,
+				821C5C6727528587003643C5 /* User.swift in Sources */,
+				821C5C732752976D003643C5 /* GHSearchError.swift in Sources */,
+				821C5C682752858B003643C5 /* Follower.swift in Sources */,
+				821C5C722752972E003643C5 /* NetworkingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,6 +863,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		821C5C742752A286003643C5 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8204C2C327501EFF00EB9BFB /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		8204C2C527501EFF00EB9BFB /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8204C2C227501EFF00EB9BFB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		821C5C752752A287003643C5 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 821C5C742752A286003643C5 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8204C27127500B9E00EB9BFB /* Project object */;
 }
