@@ -10,7 +10,6 @@ import RxSwift
 
 class GHUserViewModelTests: XCTestCase {
     
-    
     func testGetUserFailure() {
         let disposeBag = DisposeBag()
         let appServerClient = MockAppServerClient()
@@ -71,14 +70,12 @@ class GHUserViewModelTests: XCTestCase {
         wait(for: [expectEmptyFollowers], timeout: 0.1)
     }
     
-    
 }
 
 
 private final class MockAppServerClient: NetworkingManager {
     var getFollowersResult: Result<[Follower], GHSearchError>?
     var getUserResult: Result<User, GHSearchError>?
-    
     
     override func getFollowers(for username: String, page: Int) -> Observable<[Follower]> {
         
