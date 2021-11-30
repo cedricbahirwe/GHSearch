@@ -43,6 +43,7 @@
 		821C5C732752976D003643C5 /* GHSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BA2750111000EB9BFB /* GHSearchError.swift */; };
 		821C5C762752A287003643C5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 821C5C752752A287003643C5 /* Alamofire */; };
 		8228535027561533006FF354 /* FollowerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228534F27561533006FF354 /* FollowerRowView.swift */; };
+		8228535127561D02006FF354 /* GHUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C6027528323003643C5 /* GHUserViewModel.swift */; };
 		823D7EE52754A6530091D2B2 /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE42754A6530091D2B2 /* BookmarkCell.swift */; };
 		823D7EE72754C1650091D2B2 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */; };
 		823D7EF02754FC4D0091D2B2 /* HostingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EEF2754FC4D0091D2B2 /* HostingTableViewCell.swift */; };
@@ -504,6 +505,7 @@
 				821C5C732752976D003643C5 /* GHSearchError.swift in Sources */,
 				821C5C682752858B003643C5 /* Follower.swift in Sources */,
 				821C5C722752972E003643C5 /* NetworkingManager.swift in Sources */,
+				8228535127561D02006FF354 /* GHUserViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

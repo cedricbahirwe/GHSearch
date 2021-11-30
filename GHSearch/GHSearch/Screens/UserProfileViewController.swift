@@ -9,18 +9,6 @@ import UIKit
 import SwiftUI
 import RxSwift
 
-enum FollowActivityType {
-    case followers, followings
-    var title: String {
-        switch self {
-        case .followers:
-            return "Followers"
-        case .followings:
-            return "Followings"
-        }
-    }
-}
-
 class UserProfileViewController: DataFetchingActivityVC {
     var userViewModel: GHUserViewModel! // = GHUserViewModel()
     

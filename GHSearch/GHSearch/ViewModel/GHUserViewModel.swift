@@ -13,7 +13,20 @@ protocol UserInfoVCDelegate: AnyObject {
     func didRequestShowProfile(for username: String)
 }
 
-class GHUserViewModel: ObservableObject {
+
+enum FollowActivityType {
+    case followers, followings
+    var title: String {
+        switch self {
+        case .followers:
+            return "Followers"
+        case .followings:
+            return "Followings"
+        }
+    }
+}
+
+class GHUserViewModel {
     
     var selectedUser = BehaviorRelay<User?>(value: nil)
     
@@ -43,7 +56,7 @@ class GHUserViewModel: ObservableObject {
     
     private let loadInProgress = BehaviorRelay(value: false)
 
-    init(apiClient: NetworkingManager = NetworkingManager()) {
+    init(apiClient: NetworkingManager = NetworkingManager.shared) {
         self.apiClient = apiClient
         bind()
     }
