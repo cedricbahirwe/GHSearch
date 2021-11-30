@@ -16,10 +16,7 @@ class FollowActivityTableViewController: UIViewController {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         tableView.register(HostingTableViewCell<FollowRowView>.self, forCellReuseIdentifier: String(describing: FollowRowView.self))
-//        tableView.register(FollowerCell.self, forCellReuseIdentifier: String(describing: FollowerCell.self))
-//        tableView.register(UITableViewCell.self,
-//                           forCellReuseIdentifier: UITableViewCell.description())
-        tableView.estimatedRowHeight = 44
+        tableView.estimatedRowHeight = 80
         tableView.rowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView(frame: .zero)
