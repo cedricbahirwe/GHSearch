@@ -30,6 +30,47 @@ class GHUserViewModelTests: XCTestCase {
         wait(for: [expectErrorShown], timeout: 0.1)
     }
     
+    func testGetUserSuccess() {
+        let disposeBag = DisposeBag()
+        let appServerClient = MockAppServerClient()
+        let user = User.with()
+        let follower = Follower(login: user.login, avatarUrl: user.avatarUrl, htmlUrl: user.htmlUrl)
+        appServerClient.getUserResult = .success(user)
+        appServerClient.getFollowersResult = .success([follower])
+
+        let viewModel = GHUserViewModel(apiClient: appServerClient)
+
+        let expectNormalFollowers = expectation(description: "Got followers")
+
+        viewModel.followers.subscribe(
+            onNext: { followers in
+                if followers.isEmpty == false {
+                    expectNormalFollowers.fulfill()
+                }
+            }
+        ).disposed(by: disposeBag)
+
+        viewModel.getFollows(typeof: .followers, username: follower.login, page: 1)
+
+        waitForExpectations(timeout: 0.1, handler: nil)
+
+        appServerClient.getFollowersResult = .success([])
+
+        let expectEmptyFollowers = expectation(description: "Got 1 follower")
+
+        viewModel.followers.subscribe(
+            onNext: { followers in
+                if followers.count == 1 {
+                    expectEmptyFollowers.fulfill()
+                }
+            }
+        ).disposed(by: disposeBag)
+        
+        viewModel.getUserInfo(for: user.login)
+
+        wait(for: [expectEmptyFollowers], timeout: 0.1)
+    }
+    
     
 }
 
