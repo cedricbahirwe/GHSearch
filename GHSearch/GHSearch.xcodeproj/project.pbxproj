@@ -42,7 +42,6 @@
 		821C5C722752972E003643C5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BC2750113800EB9BFB /* NetworkingManager.swift */; };
 		821C5C732752976D003643C5 /* GHSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BA2750111000EB9BFB /* GHSearchError.swift */; };
 		821C5C762752A287003643C5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 821C5C752752A287003643C5 /* Alamofire */; };
-		821C5C7A27539AEF003643C5 /* BookmarksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */; };
 		823D7EE52754A6530091D2B2 /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE42754A6530091D2B2 /* BookmarkCell.swift */; };
 		823D7EE72754C1650091D2B2 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */; };
 		823D7EEE2754F2000091D2B2 /* FollowRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EED2754F2000091D2B2 /* FollowRowView.swift */; };
@@ -105,7 +104,6 @@
 		821C5C652752845A003643C5 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		821C5C6B27528ADD003643C5 /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
 		821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUserViewModelTests.swift; sourceTree = "<group>"; };
-		821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewModel.swift; sourceTree = "<group>"; };
 		823D7EE42754A6530091D2B2 /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
 		823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
 		823D7EED2754F2000091D2B2 /* FollowRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRowView.swift; sourceTree = "<group>"; };
@@ -273,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				821C5C6027528323003643C5 /* GHUserViewModel.swift */,
-				821C5C7927539AEF003643C5 /* BookmarksViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -484,7 +481,6 @@
 				8204C2D42750C65D00EB9BFB /* UserProfileViewController.swift in Sources */,
 				8204C2DC2750D51700EB9BFB /* UserProfileView.swift in Sources */,
 				8204C2BF2750129400EB9BFB /* User.swift in Sources */,
-				821C5C7A27539AEF003643C5 /* BookmarksViewModel.swift in Sources */,
 				8204C2BB2750111000EB9BFB /* GHSearchError.swift in Sources */,
 				823F4F37275273100038EA89 /* UserInfoSectionView.swift in Sources */,
 				823F4F33275272E90038EA89 /* GHAvatarView.swift in Sources */,
