@@ -43,7 +43,7 @@ class GHUserViewModel: ObservableObject {
     
     private let loadInProgress = BehaviorRelay(value: false)
 
-    init(apiClient: NetworkingManager = NetworkingManager.shared) {
+    init(apiClient: NetworkingManager = NetworkingManager()) {
         self.apiClient = apiClient
         bind()
     }

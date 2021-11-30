@@ -13,15 +13,15 @@ class GHUserViewModelTests: XCTestCase {
     
 //    func testAddFriendSuccess() {
 //        let disposeBag = DisposeBag()
-//        let appServerClient = MockAppServerClient()
-//        appServerClient.postUserResult = .success(payload: ())
+//        let appServerClient = MockAppServerClient.shared
+//        appServerClient.getFollowersResult = .success([]) // .success(payload: ([User.with()]))
 //
-//        let viewModel = AddFriendViewModel(appServerClient: appServerClient)
+//        let viewModel =  GHUserViewModel(apiClient: appServerClient)
 //
-//        let mockFriend = Friend.with()
-//        viewModel.firstname.accept(mockFriend.firstname)
-//        viewModel.lastname.accept(mockFriend.lastname)
-//        viewModel.phonenumber.accept(mockFriend.phonenumber)
+//        let mockUser = User.with()
+////        viewModel.firstname.accept(mockFriend.firstname)
+////        viewModel.lastname.accept(mockFriend.lastname)
+////        viewModel.phonenumber.accept(mockFriend.phonenumber)
 //
 //        let expectNavigateCall = expectation(description: "Navigate back is called")
 //
@@ -84,6 +84,27 @@ class GHUserViewModelTests: XCTestCase {
 //        wait(for: [expectUpdateSubmitButtonStateCall], timeout: 0.1)
 //    }
     
+    
+    func testGetUserFailure() {
+        let disposeBag = DisposeBag()
+        let user = User.with()
+        let apiClient = MockAppServerClient()
+        apiClient.getUserResult = .failure(GHSearchError.notFound)
+
+        let viewModel = GHUserViewModel()
+//
+        let expectErrorShown = expectation(description: "Error note is shown")
+        
+        viewModel.onShowError.subscribe(
+            onNext: { singleButtonAlert in
+                expectErrorShown.fulfill()
+            }).disposed(by: disposeBag)
+
+        
+        viewModel.getUserInfo(for: user.login)
+
+        wait(for: [expectErrorShown], timeout: 0.1)
+    }
 }
 
 
@@ -91,6 +112,7 @@ private final class MockAppServerClient: NetworkingManager {
     var getFollowersResult: Result<[Follower], GHSearchError>?
     var getUserResult: Result<User, GHSearchError>?
     
+//    static var sharedInstance = NetworkingManager.shared
     
     override func getFollowers(for username: String, page: Int) -> Observable<[Follower]> {
         

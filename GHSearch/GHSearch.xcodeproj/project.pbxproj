@@ -42,9 +42,9 @@
 		821C5C722752972E003643C5 /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BC2750113800EB9BFB /* NetworkingManager.swift */; };
 		821C5C732752976D003643C5 /* GHSearchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8204C2BA2750111000EB9BFB /* GHSearchError.swift */; };
 		821C5C762752A287003643C5 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 821C5C752752A287003643C5 /* Alamofire */; };
+		8228535027561533006FF354 /* FollowerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8228534F27561533006FF354 /* FollowerRowView.swift */; };
 		823D7EE52754A6530091D2B2 /* BookmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE42754A6530091D2B2 /* BookmarkCell.swift */; };
 		823D7EE72754C1650091D2B2 /* BookmarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */; };
-		823D7EEE2754F2000091D2B2 /* FollowRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EED2754F2000091D2B2 /* FollowRowView.swift */; };
 		823D7EF02754FC4D0091D2B2 /* HostingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823D7EEF2754FC4D0091D2B2 /* HostingTableViewCell.swift */; };
 		823F4F26275241FA0038EA89 /* FollowActivityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */; };
 		823F4F2A275251CA0038EA89 /* DataFetchingActivityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */; };
@@ -104,9 +104,9 @@
 		821C5C652752845A003643C5 /* UserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		821C5C6B27528ADD003643C5 /* MockUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUser.swift; sourceTree = "<group>"; };
 		821C5C7027528D96003643C5 /* GHUserViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHUserViewModelTests.swift; sourceTree = "<group>"; };
+		8228534F27561533006FF354 /* FollowerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerRowView.swift; sourceTree = "<group>"; };
 		823D7EE42754A6530091D2B2 /* BookmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkCell.swift; sourceTree = "<group>"; };
 		823D7EE62754C1650091D2B2 /* BookmarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksViewController.swift; sourceTree = "<group>"; };
-		823D7EED2754F2000091D2B2 /* FollowRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowRowView.swift; sourceTree = "<group>"; };
 		823D7EEF2754FC4D0091D2B2 /* HostingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingTableViewCell.swift; sourceTree = "<group>"; };
 		823F4F25275241FA0038EA89 /* FollowActivityTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowActivityTableViewController.swift; sourceTree = "<group>"; };
 		823F4F29275251CA0038EA89 /* DataFetchingActivityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchingActivityVC.swift; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 			children = (
 				823D7EE42754A6530091D2B2 /* BookmarkCell.swift */,
 				823D7EEF2754FC4D0091D2B2 /* HostingTableViewCell.swift */,
-				823D7EED2754F2000091D2B2 /* FollowRowView.swift */,
+				8228534F27561533006FF354 /* FollowerRowView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -474,7 +474,6 @@
 				8204C2E22751105000EB9BFB /* AlertItem.swift in Sources */,
 				823D7EF02754FC4D0091D2B2 /* HostingTableViewCell.swift in Sources */,
 				823F4F2E2752697D0038EA89 /* UIView+Extension.swift in Sources */,
-				823D7EEE2754F2000091D2B2 /* FollowRowView.swift in Sources */,
 				8204C2D22750C51600EB9BFB /* SearchViewController.swift in Sources */,
 				8204C2CA2750BAB300EB9BFB /* MainTabViewController.swift in Sources */,
 				8204C2E02750EB8A00EB9BFB /* Date+Extension.swift in Sources */,
@@ -485,6 +484,7 @@
 				823F4F37275273100038EA89 /* UserInfoSectionView.swift in Sources */,
 				823F4F33275272E90038EA89 /* GHAvatarView.swift in Sources */,
 				8204C2B327500FF100EB9BFB /* Constants.swift in Sources */,
+				8228535027561533006FF354 /* FollowerRowView.swift in Sources */,
 				8204C2DE2750D78C00EB9BFB /* GHAvatarImageView.swift in Sources */,
 				823F4F39275273790038EA89 /* LocationLabel.swift in Sources */,
 				8204C2BD2750113800EB9BFB /* NetworkingManager.swift in Sources */,

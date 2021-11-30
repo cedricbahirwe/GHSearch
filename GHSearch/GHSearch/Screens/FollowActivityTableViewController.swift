@@ -15,7 +15,7 @@ class FollowActivityTableViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
-        tableView.register(HostingTableViewCell<FollowRowView>.self, forCellReuseIdentifier: String(describing: FollowerCell.self))
+        tableView.register(HostingTableViewCell<FollowRowView>.self, forCellReuseIdentifier: String(describing: FollowRowView.self))
 //        tableView.register(FollowerCell.self, forCellReuseIdentifier: String(describing: FollowerCell.self))
 //        tableView.register(UITableViewCell.self,
 //                           forCellReuseIdentifier: UITableViewCell.description())
@@ -91,7 +91,7 @@ class FollowActivityTableViewController: UIViewController {
     private func tableViewBind() {
         
         viewModel.followers.bind(to: tableView.rx.items) { tableView, _, item in
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FollowerCell.self)) as! HostingTableViewCell<FollowRowView>
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FollowRowView.self)) as! HostingTableViewCell<FollowRowView>
             cell.host(FollowRowView(follower: item, showProfile: { follow in
                 self.dismiss(animated: true)
                 self.viewModel.delegate?.didRequestShowProfile(for: follow.login)

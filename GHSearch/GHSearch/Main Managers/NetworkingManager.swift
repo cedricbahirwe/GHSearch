@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 import Alamofire
 
-
 class NetworkingManager {
     
     struct NetworkAlert {
@@ -22,16 +21,21 @@ class NetworkingManager {
         let message: String
     }
     
-    static let shared = NetworkingManager()
+    static var shared = NetworkingManager()
     public let cache = NSCache<NSString, UIImage>()
 
     private let baseUrl = "https://api.github.com/users/"
     private let decoder = JSONDecoder()
     
-    private init() {
-        decoder.dateDecodingStrategy = .iso8601
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-    }
+//    private init() {
+//        decoder.dateDecodingStrategy = .iso8601
+//        decoder.keyDecodingStrategy = .convertFromSnakeCase
+//    }
+    
+//    init() {
+//        decoder.dateDecodingStrategy = .iso8601
+//        decoder.keyDecodingStrategy = .convertFromSnakeCase
+//    }
     
     func getFollowers(for username: String, page: Int) -> Observable<[Follower]> {
         return Observable.create { observer -> Disposable in
